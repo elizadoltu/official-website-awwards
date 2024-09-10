@@ -5,25 +5,16 @@ import "./css/styles.css";
 import CustomCursor from "./utils/CustomCursor";
 import svgLanding from './assets/abstract-landing.svg';
 import { useParallax, ParallaxProvider } from "react-scroll-parallax";
-import { Parallax } from "react-scroll-parallax";
-
 const Landing = () => {
 
-    const { ref } = useParallax<HTMLDivElement>({ speed: -10 })
     const [time, setTime] = useState(new DateObject({ timezone: "Europe/Bucharest" }));
     const smoothScrollWrapperRef = useRef(null);
     const speed = 0.06;
     let offset = 0;
-
-    const designerParallax = useParallax<HTMLDivElement>({
-        easing: "easeOutQuad",
-        translateX: [0, -100],
+    const parallax = useParallax({
+        translateX: [160, -100, "easeInOutSine"],
     });
-
-    const developerParallax = useParallax<HTMLDivElement>({
-        easing: "easeOutQuad",
-        translateX: [0, 100],
-    });    
+   
     useEffect(() => {
         // GSAP animations for .blink-colon
         gsap.to(".blink-colon", {
@@ -75,9 +66,9 @@ const Landing = () => {
     };
 
     return (
-        <div className="w-full mt-5 overflow-x-hidden smooth-scroll-animation" ref={smoothScrollWrapperRef}>
+        <div className="w-full mt-5 overflow-hidden h-screen smooth-scroll-animation" ref={smoothScrollWrapperRef}>
             <CustomCursor />
-            <div className="flex justify-between">
+            <div className="flex justify-between overflow-hidden">
                 <div className="flex justify-center items-center">
                     <div className="flex flex-col font-urbanist custom-animation ml-5">
                         <h1>ELIZA - TEODORA DOLTU</h1>
@@ -103,14 +94,15 @@ const Landing = () => {
                 </div>
                 
             </div>
-            <div className="custom-animation overflow-x-hidden">
+            <div className="custom-animation overflow-hidden">
                 <div className="flex justify-center items-center text-12xl font-clash-grotesk ml-80 -mr-96" >
                     <img src={svgLanding} alt="image with a metal thing" className="z-10 -mr-48"/>
-                    <h1>DESIGNER</h1>
+                    <h1 ref={parallax.ref}>DESIGNER</h1>
                 </div>
                 <h1 className="flex justify-center items-center text-12xl font-clash-grotesk -mt-72 mr-96 -ml-96">
                     DEVELOPER
                 </h1>
+                <h2 className="flex justify-center items-start font-urbanist -ml-96 -mt-32">Born to create digital art</h2>
             </div>
         </div>
     )

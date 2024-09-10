@@ -5,6 +5,7 @@ import gsap from "gsap";
 import "./css/styles.css";
 import About from "./About";
 import CustomCursor from "./utils/CustomCursor";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 const App = () => {
   const siteContentRef = useRef(null);
@@ -153,35 +154,36 @@ const App = () => {
   }, [siteContentRef.current]);
 
   return (
-    <div className="overflow-x-hidden w-full">
-      <CustomCursor />
-      <div className="pre-loader">
-        <div className="loader"></div>
-        <div className="loader-bg"></div>
-      </div>
-      <div className="loader-content">
-        <div className="count">
-          <p>0</p>
+    <ParallaxProvider>
+      <div className="overflow-x-hidden w-full">
+        <CustomCursor />
+        <div className="pre-loader">
+          <div className="loader"></div>
+          <div className="loader-bg"></div>
         </div>
-        <div className="copy">
-          <p className="ml16 font-clash-grotesk">Eliza Doltu</p>
+        <div className="loader-content">
+          <div className="count">
+            <p>0</p>
+          </div>
+          <div className="copy">
+            <p className="ml16 font-clash-grotesk">Eliza Doltu</p>
+          </div>
         </div>
-      </div>
-      <div className="loader-2"></div>
-      <div
-        className="site-content w-full"
-        ref={siteContentRef}
-        style={{ zIndex: "-1" }}
-      ></div>
-    
+        <div className="loader-2"></div>
+        <div
+          className="site-content w-full"
+          ref={siteContentRef}
+          style={{ zIndex: "-1" }}
+        ></div>
+
         {showLanding && (
           <div>
             <Landing />
             <About />
           </div>
         )}
-    
-    </div>
+      </div>
+    </ParallaxProvider>
   );
 };
 
