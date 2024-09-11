@@ -1,36 +1,44 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import aboutPhoto from "./assets/about-photo.svg";
-import { useParallax, ParallaxProvider } from "react-scroll-parallax";
+import { useParallax } from "react-scroll-parallax";
+import "./css/styles.css";
 
 const About = () => {
+  const { ref: textRef } = useParallax({ speed: 50 });
+  const smoothScrollWrapperRef = useRef(null);
+  const speed = 0.08;
+  let offset = 0;
+  let callScroll;
 
-  const { ref } = useParallax({ speed: 50 });
-    const smoothScrollWrapperRef = useRef(null);
-    const speed = 0.06;
-    let offset = 0;
+  /*useEffect(() => {
+    const scrollWrap = smoothScrollWrapperRef.current;
 
-    /*
-        useEffect(() => {
-            if (smoothScrollWrapperRef.current) {
-              const body = document.body;
-              const scrollWrap = smoothScrollWrapperRef.current;
-              const height = scrollWrap.getBoundingClientRect().height - 1;
-        
-              body.style.height = Math.floor(height) + "px";
-              function smoothScroll() {
-                offset += (window.pageYOffset - offset) * speed;
-                const scroll = `translateY(-${offset}px) translateZ(0)`;
-                scrollWrap.style.transform = scroll;
-                requestAnimationFrame(smoothScroll);
-              }
-              smoothScroll();
-            }
-          }, [smoothScrollWrapperRef.current]);
-    */
+    if (scrollWrap) {
+      // Ensure body height adjusts to the full content height
+      const body = document.body;
+      const height = scrollWrap.getBoundingClientRect().height;
+      body.style.height = `${height}px`;
+
+      const smoothScroll = () => {
+        offset += (window.scrollY - offset) * speed;
+        scrollWrap.style.transform = `translateY(-${offset}px)`;
+        callScroll = requestAnimationFrame(smoothScroll);
+      };
+
+      smoothScroll();
+
+      // Cleanup animation frame on unmount
+      return () => cancelAnimationFrame(callScroll);
+    }
+  }, [smoothScrollWrapperRef]);
+  */
 
   return (
-    <div className="w-full h-auto overflow-hidden flex justify-between font-urbanist" id="about" >
-      <div className="ml-5" ref={ref}>
+    <div
+      className="w-full min-h-screen flex justify-between font-urbanist relative"
+      id="about"
+    >
+      <div className="ml-5" ref={textRef}>
         <h1 className="font-extrabold text-9xl">General Info</h1>
         <div className="flex mt-5 ml-2">
           <p className="font-extrabold w-20">Full name</p>
@@ -45,7 +53,7 @@ const About = () => {
           <p className="ml-28">Student</p>
         </div>
       </div>
-      <div className="flex flex-col w-2/5 ">
+      <div className="flex flex-col w-2/5">
         <div>
           <img src={aboutPhoto} alt="image of eliza teodora doltu on a beach" />
         </div>

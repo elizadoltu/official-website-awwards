@@ -14,10 +14,15 @@ export default {
         'bg-color' : 'var(--background-color)'
       },
       colors: {
-        'font-color' : 'var(--font-color)'
+        'font-color' : 'var(--font-color)',
+        'bg-color' : 'var(--background-color)'
       },
       fontSize: {
-        '12xl' : '20rem'
+        '12xl' : '20rem',
+        '10xl' : '15rem'
+      },
+      width: {
+        '256': '30rem'
       }
     },
   },

@@ -80,9 +80,19 @@
     z-index: -2;
 }
 
-.smooth-scroll-animation {
-    overflow: hidden;
+.smooth-scroll-animation-about {
+    height: 100vh;
+    z-index: 2;
 }
+
+.project-margin-left {
+    margin-left: 50px;
+  }
+  
+.project-margin-right {
+    margin-right: 50px;
+  }
+  
 
 /* styles.css */
 

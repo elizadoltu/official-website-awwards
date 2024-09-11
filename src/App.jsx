@@ -4,8 +4,12 @@ import anime from "animejs";
 import gsap from "gsap";
 import "./css/styles.css";
 import About from "./About";
+import Projects from "./Projects";
 import CustomCursor from "./utils/CustomCursor";
 import { ParallaxProvider } from "react-scroll-parallax";
+import smoothscroll from "smoothscroll-polyfill";
+
+smoothscroll.polyfill();
 
 const App = () => {
   const siteContentRef = useRef(null);
@@ -155,8 +159,8 @@ const App = () => {
 
   return (
     <ParallaxProvider>
+      
       <div className="overflow-x-hidden w-full">
-        <CustomCursor />
         <div className="pre-loader">
           <div className="loader"></div>
           <div className="loader-bg"></div>
@@ -178,8 +182,10 @@ const App = () => {
 
         {showLanding && (
           <div>
+            <CustomCursor />
             <Landing />
             <About />
+            <Projects />
           </div>
         )}
       </div>

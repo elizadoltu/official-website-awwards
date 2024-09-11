@@ -5,15 +5,41 @@ import "./css/styles.css";
 import CustomCursor from "./utils/CustomCursor";
 import svgLanding from './assets/abstract-landing.svg';
 import { useParallax, ParallaxProvider } from "react-scroll-parallax";
+import smoothscroll from "smoothscroll-polyfill";
+
+
 const Landing = () => {
+smoothscroll.polyfill();
 
     const [time, setTime] = useState(new DateObject({ timezone: "Europe/Bucharest" }));
     const smoothScrollWrapperRef = useRef(null);
-    const speed = 0.06;
+    const { ref: titleDesigner } = useParallax({
+        translateX: [10, -20],
+        speed:10,
+        easing: "easeInOutQuad"
+    })
+    const { ref: titleDeveloper } = useParallax({
+        translateX: [0, 20],
+        speed:10,
+        easing: "easeInOutQuad"
+    })
+    const speed = 0.08;
     let offset = 0;
-    const parallax = useParallax({
-        translateX: [160, -100, "easeInOutSine"],
-    });
+    let callScroll;
+
+    const handleLinkClick = (sectionId, event) => {
+        event.preventDefault(); // Prevent default anchor behavior
+        const section = document.getElementById(sectionId);
+        if (section) {
+          // Scroll to the section using custom smoothScroll logic
+          const targetOffset = section.offsetTop;
+          window.scrollTo({
+            top: targetOffset, // Use native scroll for compatibility
+            behavior: "smooth"
+          });
+        }
+      };
+      
    
     useEffect(() => {
         // GSAP animations for .blink-colon
@@ -40,34 +66,42 @@ const Landing = () => {
         return () => clearInterval(interval);
     }, []);
 
+    /*
     useEffect(() => {
-        if (smoothScrollWrapperRef.current) {
-          const body = document.body;
-          const scrollWrap = smoothScrollWrapperRef.current;
-          const height = scrollWrap.getBoundingClientRect().height - 1;
-    
-          body.style.height = Math.floor(height) + "px";
-          function smoothScroll() {
-            offset += (window.pageYOffset - offset) * speed;
-            const scroll = `translateY(-${offset}px) translateZ(0)`;
-            scrollWrap.style.transform = scroll;
-            requestAnimationFrame(smoothScroll);
-          }
-          smoothScroll();
-        }
-      }, [smoothScrollWrapperRef.current]);
 
+        
+          const body = document.body;
+            const scrollWrap = document.getElementsByClassName("smooth-scroll-animation")[0];
+
+          const height = scrollWrap.getBoundingClientRect().height - 1;
+          body.style.height = `${Math.floor(height)}px`;
+    
+          const smoothScroll = () => {
+            offset += (window.scrollY - offset) * speed; // Updated to window.scrollY
+            const transformValue = `translateY(-${offset}px) translateZ(0)`;
+            scrollWrap.style.transform = transformValue;
+            callScroll = requestAnimationFrame(smoothScroll);
+            
+          };
+    
+          smoothScroll();
+    
+          // Cleanup animation frame on unmount
+          return () => cancelAnimationFrame(callScroll);
+        
+      }, [smoothScrollWrapperRef]);
+      
+    */
     const hours = time.format("hh");
     const minutes = time.format("mm");
     const ampm = time.format("A");
 
-    const handleLinkClick = (section) => {
+    const handleLinkClickDebug = (section) => {
         console.log(`Clicked on ${section}`);
     };
 
     return (
-        <div className="w-full mt-5 overflow-hidden h-screen smooth-scroll-animation" ref={smoothScrollWrapperRef}>
-            <CustomCursor />
+        <div className="w-full mt-5 min-h-screen overflow-hidden">
             <div className="flex justify-between overflow-hidden">
                 <div className="flex justify-center items-center">
                     <div className="flex flex-col font-urbanist custom-animation ml-5">
@@ -87,7 +121,7 @@ const Landing = () => {
                 <div className="font-urbanist flex flex-col custom-animation mr-5">
                     <p>NAVIGATION</p>
                     <div className="flex font-extrabold z-10">
-                        <a href="#about" className="cursor-pointer" onClick={() => handleLinkClick("ABOUT")}>ABOUT</a>
+                        <a href="#about" className="cursor-pointer" onClick={(e) => handleLinkClick("about", e)}>ABOUT</a>
                         <a href="#work" className="ml-3 hover:cursor-pointer">WORK</a>
                         <a href="#contact" className="ml-3 hover:cursor-pointer">CONTACT</a>
                     </div>
@@ -95,11 +129,12 @@ const Landing = () => {
                 
             </div>
             <div className="custom-animation overflow-hidden">
-                <div className="flex justify-center items-center text-12xl font-clash-grotesk ml-80 -mr-96" >
+                <div className="flex justify-center items-center text-12xl font-clash-grotesk ml-80 -mr-96" 
+                ref={titleDesigner}>
                     <img src={svgLanding} alt="image with a metal thing" className="z-10 -mr-48"/>
-                    <h1 ref={parallax.ref}>DESIGNER</h1>
+                    <h1>DESIGNER</h1>
                 </div>
-                <h1 className="flex justify-center items-center text-12xl font-clash-grotesk -mt-72 mr-96 -ml-96">
+                <h1 className="flex justify-center items-center text-12xl font-clash-grotesk -mt-72 mr-96 -ml-96" ref={titleDeveloper}>
                     DEVELOPER
                 </h1>
                 <h2 className="flex justify-center items-start font-urbanist -ml-96 -mt-32">Born to create digital art</h2>
