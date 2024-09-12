@@ -34,13 +34,13 @@ const Projects = () => {
     from: { scale: 0, opacity: 0 },
     enter: { scale: 1, opacity: 1 },
     leave: { scale: 0, opacity: 0 },
-    config: { tension: 300, friction: 50 },
+    config: { tension: 350, friction: 40 },
   });
 
   const springStyles = useSpring({
     opacity: hoveredProjectId !== null ? 1 : 0,
     transform: hoveredProjectId !== null ? "translateY(0)" : "translateY(10px)",
-    config: { tension: 300, friction: 50, precision: 0.1 },
+    config: { tension: 350, friction: 50, precision: 0.1 },
   });
 
   useAnimations();

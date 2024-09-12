@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 
+// Preload function to load the image when hovered
 const preloadImage = (url) => {
   const img = new Image();
   img.src = url;
 };
 
 const HoverComponent = ({ project }) => {
-  useEffect(() => {
-    preloadImage(project.image);
-  }, [project.image]);
-
   return (
-    <div className="bg-black w-256 h-256">
+    <div 
+      className="bg-black w-256 h-256"
+      onMouseEnter={() => preloadImage(project.image)} 
+    >
       <div>
+       
         <img src={project.image} alt="image of a project" className="w-full h-auto" />
       </div>
       <div className="flex flex-col justify-between font-urbanist text-bg-color text-base p-1">
