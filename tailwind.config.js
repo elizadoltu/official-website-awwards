@@ -19,10 +19,13 @@ export default {
       },
       fontSize: {
         '12xl' : '20rem',
-        '10xl' : '15rem'
+        '10xl' : '12rem'
       },
       width: {
-        '256': '30rem'
+        '256': '30rem',
+      },
+      lineHeight: {
+        '1rem' : '9.5rem'
       }
     },
   },

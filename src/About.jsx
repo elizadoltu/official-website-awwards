@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import aboutPhoto from "./assets/about-photo.svg";
 import { useParallax } from "react-scroll-parallax";
 import "./css/styles.css";
+import CustomCursor from "./utils/CustomCursor";
 
 const About = () => {
   const { ref: textRef } = useParallax({ speed: 50 });

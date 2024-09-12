@@ -5,6 +5,7 @@ import urbanOasis from "../assets/urban-oasis.svg";
 
 const projectsData = [
   {
+    id: 1,
     name: "Alex Greenwood",
     firstname: "Alex",
     lastname: "Greenwood",
@@ -38,6 +39,7 @@ const projectsData = [
     image: alexGreenwood,
   },
   {
+    id: 2,
     name: "Leah Williamson",
     firstname: "Leah",
     lastname: "Williamson",
@@ -72,6 +74,7 @@ const projectsData = [
 
   },
   {
+    id: 3,
     name: "Booking Iasi",
     firstname: "Booking",
     lastname: "Iasi",
@@ -100,6 +103,7 @@ const projectsData = [
 
   },
   {
+    id: 4,
     name: "Urban Oasis",
     firstname: "Urban",
     lastname: "Oasis",

@@ -1,37 +1,62 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState } from "react";
+import { useSpring, animated, useTransition } from "@react-spring/web";
 import { useParallax } from "react-scroll-parallax";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import "./css/styles.css";
 import abstractPhoto from "./assets/abstract-projects.svg";
-import projectsData from "./utils/data";
+import projectsData from './utils/data';
+import HoverComponent from "./components/HoverComponent";
+import useAnimations from "./animations/useAnimation";
+import CustomProjectCursor from "./custom/CustomProjectCursor";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
-  const { ref: titleRef } = useParallax({
+  const { ref: title } = useParallax({
     translateX: [10, -40],
     speed: 10,
-    easing: "easeInOutSine",
+    easing: "easeInOutSine"
   });
 
-  const { ref: refLeft } = useParallax({
-    translateX: [-100, 40],
-    speed: 10,
-    easing: "easeInOutSine",
+  const [hoveredProjectId, setHoveredProjectId] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    setMousePosition({
+      x: e.clientX,
+      y: e.clientY
+    });
+  };
+
+  // Use transition for element enter and leave animations
+  const transition = useTransition(hoveredProjectId, {
+    from: { scale: 0, opacity: 0 },
+    enter: { scale: 1, opacity: 1 },
+    leave: { scale: 0, opacity: 0 },
+    config: { tension: 300, friction: 50 }
   });
 
-  const { ref: refRight } = useParallax({
-    translateX: [80, -10],
-    speed: 10,
-    easing: "easeInOutSine",
+  // Use spring for additional style control
+  const springStyles = useSpring({
+    opacity: hoveredProjectId !== null ? 1 : 0,
+    transform: hoveredProjectId !== null ? "translateY(0)" : "translateY(10px)",
+    config: { tension: 300, friction: 50, precision: 0.1 }
   });
+
+  useAnimations();
 
   return (
-    <div className="w-full overflow-hidden font-urbanist flex flex-col relative" id="work">
+    <div
+      className="z-30 w-full min-h-screen overflow-hidden relative font-urbanist flex flex-col"
+      id="work"
+      onMouseMove={handleMouseMove}
+    >
+      
       <div className="flex flex-col justify-center items-center">
-        <div className="flex ml-96" ref={titleRef}>
-          <img
-            src={abstractPhoto}
-            alt="image with an abstract object"
-            className="z-10"
-          />
+        <div className="flex ml-96" ref={title}>
+          <img src={abstractPhoto} alt="image with an abstract object" className="z-10"/>
           <h1 className="font-clash-grotesk text-12xl -ml-52">PROJECTS</h1>
         </div>
         <p className="w-96 -ml-80 -mt-32">
@@ -40,54 +65,48 @@ const Projects = () => {
           to bringing ideas to life.
         </p>
       </div>
-      <div className="flex flex-col justify-center items-center relative z-20">
-        {projectsData.map((project, index) => {
-          const marginClass =
-            index % 2 === 0 ? "project-margin-left" : "project-margin-right";
-          const parallaxRef = index % 2 === 0 ? refLeft : refRight;
-          
-          useEffect(() => {
-            console.log(`Project ${index} ref:`, parallaxRef.current);
-          }, [parallaxRef, index]);
 
-          return (
+      <div className="flex flex-col -mt-20">
+        {projectsData.map((project) => (
+          <div
+            key={project.id} // Make sure each project has a unique `id`
+            className="h-vh mt-96"
+          >
             <div
-              key={index}
-              className={`project ${marginClass} relative z-20`}
-              ref={parallaxRef}
+              className="leading-1rem"
+              onMouseEnter={() => setHoveredProjectId(project.id)}
+              onMouseLeave={() => setHoveredProjectId(null)}
+              style={{ cursor: "pointer" }}
             >
-              <div className="flex flex-col">
-                <div className="flex flex-col text-center mix-blend-exclusion relative z-40">
-                  <h1 className="font-clash-grotesk text-10xl text-center w-256 text-bg-color">
-                    {project.firstname}
-                  </h1>
-                  <h1 className="font-clash-grotesk text-10xl text-center w-256 -mt-48 text-bg-color mix-blend-exclusion">
-                    {project.lastname}
-                  </h1>
-                </div>
+              <h2 className="uppercase font-urbanist font-bold text-10xl h2-animation hover:text-gray-400">
+                {project.name}
+              </h2>
 
-                <div className="flex justify-center items-end -mt-64 relative">
-                  <img
-                    src={project.image}
-                    alt={`project of ${project.name}`}
-                  />
-                  <div className="ml-4">
-                    <div>
-                      {project.keywords.map((keyword, i) => (
-                        <p key={i}>{keyword}</p>
-                      ))}
-                    </div>
-                    <div>
-                      <p>20</p>
-                      <p>24</p>
-                      <p className="w-96">{project.description}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {project.keywords.map((keyword, i) => (
+                <h2 key={i} className="uppercase font-urbanist font-bold text-10xl h2-animation hover:text-gray-400">
+                  {keyword}
+                </h2>
+              ))}
+
+              {transition((style, item) =>
+                item && (
+                  <animated.div
+                    style={{
+                      ...springStyles,
+                      ...style,
+                      position: "fixed",
+                      bottom: `calc(-20px + (${window.innerHeight - mousePosition.y}px))`,
+                      left: `calc(20px + (${mousePosition.x}px))`,
+                      pointerEvents: "none"
+                    }}
+                  >
+                    <HoverComponent project={projectsData.find(p => p.id === item)} />
+                  </animated.div>
+                )
+              )}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );

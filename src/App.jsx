@@ -160,7 +160,7 @@ const App = () => {
   return (
     <ParallaxProvider>
       
-      <div className="overflow-x-hidden w-full">
+      <div className="overflow-x-hidden w-full ">
         <div className="pre-loader">
           <div className="loader"></div>
           <div className="loader-bg"></div>
