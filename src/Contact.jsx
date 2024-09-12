@@ -23,17 +23,17 @@ const Contact = () => {
           <div className="flex items-end">
           <div>
             <ul className="list-none">
-              <li><a href="https://bento.me/elizadoltu" className="hover-link"><span><span>bento</span><span>bento</span></span></a></li>
-              <li className="-mt-5"><a href="https://www.instagram.com/elizadoltu.design/" className="hover-link"><span><span>instagram</span><span>instagram</span></span></a></li>
-              <li className="-mt-5"><a href="https://www.behance.net/elizadoltu" className="hover-link"><span><span>behance</span><span>behance</span></span></a></li>
-              <li className="-mt-5"><a href="https://www.linkedin.com/in/eliza-teodora-doltu-56336b24a/" className="hover-link"><span><span>linkedin</span><span>linkedin</span></span></a></li>
+              <li><a href="https://bento.me/elizadoltu" className="hover-link" target="_blank"><span><span>bento</span><span>bento</span></span></a></li>
+              <li className="-mt-5"><a href="https://www.instagram.com/elizadoltu.design/" className="hover-link" target="_blank"><span><span>instagram</span><span>instagram</span></span></a></li>
+              <li className="-mt-5"><a href="https://www.behance.net/elizadoltu" className="hover-link" target="_blank"><span><span>behance</span><span>behance</span></span></a></li>
+              <li className="-mt-5"><a href="https://www.linkedin.com/in/eliza-teodora-doltu-56336b24a/" className="hover-link" target="_blank"><span><span>linkedin</span><span>linkedin</span></span></a></li>
             </ul>
           </div>
           <div className="ml-20">
             <ul>
-              <li><a href="./pdf/Resume - short.pdf" download="Resume Eliza - Teodora Doltu" className="hover-link"><span><span>resume</span><span>resume</span></span></a></li>
-              <li className="-mt-5"><a href="tel:+40732134019" className="hover-link"><span><span>+40732134019</span><span>+40732134019</span></span></a></li>
-              <li className="-mt-5"><a href="mailto:elizadoltuofficial@gmail.com" className="hover-link"><span><span>elizadoltuofficial@gmail.com</span><span>elizadoltuofficial@gmail.com</span></span></a></li>
+              <li><a href="./pdf/Resume - short.pdf" download="Resume Eliza - Teodora Doltu" className="hover-link" target="_blank"><span><span>resume</span><span>resume</span></span></a></li>
+              <li className="-mt-5"><a href="tel:+40732134019" className="hover-link" target="_blank"><span><span>+40732134019</span><span>+40732134019</span></span></a></li>
+              <li className="-mt-5"><a href="mailto:elizadoltuofficial@gmail.com" className="hover-link" target="_blank"><span><span>elizadoltuofficial@gmail.com</span><span>elizadoltuofficial@gmail.com</span></span></a></li>
             </ul>
           </div>
         </div>
