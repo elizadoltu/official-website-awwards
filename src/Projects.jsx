@@ -13,7 +13,7 @@ import "./animations/hover-animation.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Projects = () => {
+const Projects = ({ onProjectClick }) => {
   const { ref: title } = useParallax({
     translateX: [10, -40],
     speed: 10,
@@ -69,7 +69,7 @@ const Projects = () => {
 
       <div className="flex flex-col -mt-20">
         {projectsData.map((project) => (
-          <div key={project.id} className="h-vh mt-96">
+          <div key={project.id} className="h-vh mt-96" onClick={() => onProjectClick(project.name)}>
             <div
               className="leading-1rem"
               onMouseEnter={() => setHoveredProjectId(project.id)}

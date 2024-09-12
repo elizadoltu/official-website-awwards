@@ -1,11 +1,10 @@
 .cursor-default {
     background-color: black;
-    /* Other styles */
   }
   
   .cursor-hovered {
     background-color: red;
-    /* Other styles */
+   
   }
   
   .cursor-rectangle {

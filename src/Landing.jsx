@@ -43,7 +43,6 @@ const Landing = () => {
   };
 
   useEffect(() => {
-    // GSAP animations for .blink-colon
     gsap.to(".blink-colon", {
       opacity: 0,
       repeat: -1,
@@ -51,7 +50,6 @@ const Landing = () => {
       duration: 0.5,
     });
 
-    // GSAP reveal animation for text
     gsap.from(".custom-animation", {
       opacity: 1,
       ease: "power4.inOut",

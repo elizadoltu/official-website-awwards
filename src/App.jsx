@@ -9,12 +9,20 @@ import CustomCursor from "./utils/CustomCursor";
 import { ParallaxProvider } from "react-scroll-parallax";
 import smoothscroll from "smoothscroll-polyfill";
 import Contact from "./Contact";
+import SinglePageProject from "./components/SinglePageProject";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
 smoothscroll.polyfill();
 
 const App = () => {
   const siteContentRef = useRef(null);
   const [showLanding, setShowLanding] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     // Loader Counter Logic
     const counterElement = document.querySelector(".count p");
@@ -152,46 +160,60 @@ const App = () => {
     if (siteContentRef.current) {
       const timeoutId = setTimeout(() => {
         setShowLanding(true);
-      }, 5000); // Adjust delay as needed
+      }, 5000); 
 
       return () => clearTimeout(timeoutId); // Cleanup on component unmount
     }
   }, [siteContentRef.current]);
 
-  return (
-    <ParallaxProvider>
-      
-      <div className="overflow-x-hidden w-full ">
-        <div className="pre-loader">
-          <div className="loader"></div>
-          <div className="loader-bg"></div>
-        </div>
-        <div className="loader-content">
-          <div className="count">
-            <p>0</p>
-          </div>
-          <div className="copy">
-            <p className="ml16 font-clash-grotesk">Eliza Doltu</p>
-          </div>
-        </div>
-        <div className="loader-2"></div>
-        <div
-          className="site-content w-full"
-          ref={siteContentRef}
-          style={{ zIndex: "-1" }}
-        ></div>
+  const handleProjectClick = (projectName) => {
+    navigate(`/project/${projectName}`); // Navigate to project page when project is clicked
+  };
 
-        {showLanding && (
-          <div>
-            <CustomCursor />
-            <Landing />
-            <About />
-            <Projects />
-            <Contact />
+  return (
+
+      <ParallaxProvider>
+        <div className="overflow-x-hidden w-full ">
+          <div className="pre-loader">
+            <div className="loader"></div>
+            <div className="loader-bg"></div>
           </div>
-        )}
-      </div>
-    </ParallaxProvider>
+          <div className="loader-content">
+            <div className="count">
+              <p>0</p>
+            </div>
+            <div className="copy">
+              <p className="ml16 font-clash-grotesk">Eliza Doltu</p>
+            </div>
+          </div>
+          <div className="loader-2"></div>
+          <div
+            className="site-content w-full"
+            ref={siteContentRef}
+            style={{ zIndex: "-1" }}
+          ></div>
+          <Routes>
+            {showLanding && (
+              <>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <CustomCursor />
+                      <Landing />
+                      <About />
+                      <Projects onProjectClick={handleProjectClick} />
+                      <Contact />
+                    </>
+                  }
+                />
+                <Route path="/project/:name" element={<SinglePageProject />} />
+              </>
+            )}
+          </Routes>
+        </div>
+      </ParallaxProvider>
+    
   );
 };
 

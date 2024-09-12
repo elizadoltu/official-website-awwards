@@ -1,6 +1,5 @@
 import React from "react";
 
-// Preload function to load the image when hovered
 const preloadImage = (url) => {
   const img = new Image();
   img.src = url;
