@@ -15,7 +15,7 @@ const HoverComponent = ({ project }) => {
       <div>
         <img src={project.image} alt="image of a project" className="w-full h-auto" />
       </div>
-      <div className="flex flex-col justify-between font-urbanist text-bg-color text-base">
+      <div className="flex flex-col justify-between font-urbanist text-bg-color text-base p-1">
         <div className="flex justify-between">
           <p className="uppercase font-black">{project.name}</p>
           <ul className="list-none">

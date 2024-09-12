@@ -19,7 +19,8 @@ export default {
       },
       fontSize: {
         '12xl' : '20rem',
-        '10xl' : '12rem'
+        '10xl' : '12rem',
+        '14xl' : '25rem'
       },
       width: {
         '256': '30rem',

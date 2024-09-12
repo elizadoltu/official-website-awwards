@@ -8,6 +8,7 @@ import Projects from "./Projects";
 import CustomCursor from "./utils/CustomCursor";
 import { ParallaxProvider } from "react-scroll-parallax";
 import smoothscroll from "smoothscroll-polyfill";
+import Contact from "./Contact";
 
 smoothscroll.polyfill();
 
@@ -186,6 +187,7 @@ const App = () => {
             <Landing />
             <About />
             <Projects />
+            <Contact />
           </div>
         )}
       </div>
