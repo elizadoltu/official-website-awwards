@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://official-website-awwards.vercel.app/sitemap.xml

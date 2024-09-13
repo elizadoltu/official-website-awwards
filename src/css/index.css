@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --background-color: #e0e0e0;
+  --background-color: #DBDBDB;
   --font-color: #18181A;
 }
 
@@ -43,5 +43,8 @@ body {
 
 html {
   scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
