@@ -16,13 +16,49 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
+import Lenis from "lenis";
+import "./css/lenis.css";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 smoothscroll.polyfill();
+gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
   const siteContentRef = useRef(null);
+  const lenisRef = useRef();
   const [showLanding, setShowLanding] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Initialize Lenis on component mount
+    const lenis = new Lenis({
+      duration: 1.2, // Adjust the smoothness of the scroll
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing function
+      direction: 'vertical', 
+      smooth: true,
+    });
+
+    // Hook Lenis scroll event to GSAP's ScrollTrigger
+    lenis.on('scroll', () => {
+      ScrollTrigger.update();
+    });
+
+    // Add Lenis to GSAP's ticker
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0); // Disable GSAP lag smoothing for consistent animation
+
+    lenisRef.current = lenis; // Save reference to Lenis instance
+
+    return () => {
+      // Clean up when the component is unmounted
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      lenis.destroy(); // Destroy Lenis instance to avoid memory leaks
+    };
+  }, []);
+
   useEffect(() => {
     // Loader Counter Logic
     const counterElement = document.querySelector(".count p");
@@ -76,13 +112,7 @@ const App = () => {
         ease: "power4.inOut",
         delay: 3.5,
       })
-      .to(".img", {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-        duration: 1.5,
-        ease: "power4.inOut",
-        delay: 4.5,
-        stagger: 0.25,
-      });
+      
 
     // GSAP Animations
     gsap.to(".count", { opacity: 0, delay: 3.5, duration: 0.25 });
@@ -147,20 +177,24 @@ const App = () => {
       delay: 3.5,
     });
 
-    gsap.to(".img", {
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-      ease: "power4.inOut",
-      duration: 1.5,
-      delay: 4.5,
-      stagger: 0.25,
-    });
+    
   }, []);
 
   useEffect(() => {
     if (siteContentRef.current) {
       const timeoutId = setTimeout(() => {
         setShowLanding(true);
-      }, 5000); 
+      }, 5000);
+
+      return () => clearTimeout(timeoutId); // Cleanup on component unmount
+    }
+  }, [siteContentRef.current]);
+
+  useEffect(() => {
+    if (siteContentRef.current) {
+      const timeoutId = setTimeout(() => {
+        setShowLanding(true);
+      }, 5000);
 
       return () => clearTimeout(timeoutId); // Cleanup on component unmount
     }
@@ -171,49 +205,47 @@ const App = () => {
   };
 
   return (
-
-      <ParallaxProvider>
-        <div className="overflow-x-hidden w-full ">
-          <div className="pre-loader">
-            <div className="loader"></div>
-            <div className="loader-bg"></div>
-          </div>
-          <div className="loader-content">
-            <div className="count">
-              <p>0</p>
-            </div>
-            <div className="copy">
-              <p className="ml16 font-clash-grotesk">Eliza Doltu</p>
-            </div>
-          </div>
-          <div className="loader-2"></div>
-          <div
-            className="site-content w-full"
-            ref={siteContentRef}
-            style={{ zIndex: "-1" }}
-          ></div>
-          <Routes>
-            {showLanding && (
-              <>
-                <Route
-                  path="/"
-                  element={
-                    <>
-                      <CustomCursor />
-                      <Landing />
-                      <About />
-                      <Projects onProjectClick={handleProjectClick} />
-                      <Contact />
-                    </>
-                  }
-                />
-                <Route path="/project/:name" element={<SinglePageProject />} />
-              </>
-            )}
-          </Routes>
+    <ParallaxProvider>
+      <div className="overflow-x-hidden w-full">
+        <div className="pre-loader">
+          <div className="loader"></div>
+          <div className="loader-bg"></div>
         </div>
-      </ParallaxProvider>
-    
+        <div className="loader-content">
+          <div className="count">
+            <p>0</p>
+          </div>
+          <div className="copy">
+            <p className="ml16 font-clash-grotesk">Eliza Doltu</p>
+          </div>
+        </div>
+        <div className="loader-2"></div>
+        <div
+          className="site-content w-full"
+          ref={siteContentRef}
+          style={{ zIndex: "-1" }}
+        ></div>
+        <Routes>
+          {showLanding && (
+            <>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <CustomCursor />
+                    <Landing />
+                    <About />
+                    <Projects onProjectClick={handleProjectClick} />
+                    <Contact />
+                  </>
+                }
+              />
+              <Route path="/project/:name" element={<SinglePageProject />} />
+            </>
+          )}
+        </Routes>
+      </div>
+    </ParallaxProvider>
   );
 };
 

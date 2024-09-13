@@ -54,8 +54,8 @@ const Landing = () => {
       opacity: 1,
       ease: "power4.inOut",
       duration: 1.5,
-      delay: 0.5, // Delay before animation starts
-      stagger: 0.2, // Stagger time between elements
+      delay: 0.5, 
+      stagger: 0.2, 
     });
 
     const interval = setInterval(() => {
