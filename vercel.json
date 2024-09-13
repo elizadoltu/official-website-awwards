@@ -1,14 +1,13 @@
 {
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          {
-            "key": "Content-Security-Policy",
-            "value": "default-src 'self'; script-src 'self' 'nonce-<random-value>'; style-src 'self' 'nonce-<random-value>'; img-src 'self' data:; connect-src 'self'; font-src 'self'; frame-src 'none';"
-          }
-        ]
-      }
-    ]
-  }
-  
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'nonce-<random-value>'; style-src 'self' 'nonce-<random-value>'; img-src 'self' data:; connect-src 'self';  frame-src 'none';"
+        }
+      ]
+    }
+  ]
+}
