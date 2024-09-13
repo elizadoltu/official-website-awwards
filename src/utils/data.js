@@ -2,6 +2,29 @@ import alexGreenwood from "../assets/alex-greenwood.svg";
 import leahWilliamson from "../assets/leah-williamson.svg";
 import bookingIasi from "../assets/booking-iasi.svg";
 import urbanOasis from "../assets/urban-oasis.svg";
+import alexHero from "../assets/alex-greenwood/hero.png";
+import alexDesktop1 from "../assets/alex-greenwood/desktop-1.png";
+import alexDesktop2 from "../assets/alex-greenwood/desktop-2.png";
+import alexPhone1 from "../assets/alex-greenwood/phone-1.png";
+import alexPhone2 from "../assets/alex-greenwood/phone-2.png";
+
+import bookingHero from "../assets/booking-iasi/hero.jpg";
+import bookingDesktop1 from "../assets/booking-iasi/desktop-1.png";
+import bookingDesktop2 from "../assets/booking-iasi/desktop-2.png";
+import bookingPhone1 from "../assets/booking-iasi/phone-1.png";
+import bookingPhone2 from "../assets/booking-iasi/phone-2.png";
+
+import leahHero from "../assets/leah-williamson/hero.png";
+import leahDesktop1 from "../assets/leah-williamson/desktop-1.png";
+import leahDesktop2 from "../assets/leah-williamson/desktop-2.png";
+import leahPhone1 from "../assets/leah-williamson/phone-1.png";
+import leahPhone2 from "../assets/leah-williamson/phone-2.png";
+
+import urbanHero from "../assets/urban-oasis/hero.jpg";
+import urbanDesktop1 from "../assets/urban-oasis/desktop-1.png";
+import urbanDesktop2 from "../assets/urban-oasis/desktop-2.png";
+import urbanPhone1 from "../assets/urban-oasis/phone-1.png";
+import urbanPhone2 from "../assets/urban-oasis/phone-2.png";
 
 const projectsData = [
   {
@@ -37,6 +60,8 @@ const projectsData = [
         }
     },
     image: alexGreenwood,
+    hero: alexHero,
+    gridImages: [alexDesktop1, alexPhone1, alexDesktop2, alexPhone2]
   },
   {
     id: 2,
@@ -71,7 +96,8 @@ const projectsData = [
         }
     },
     image: leahWilliamson,
-
+    hero: leahHero,
+    gridImages: [leahDesktop1, leahPhone1, leahDesktop2, leahPhone2]
   },
   {
     id: 3,
@@ -100,7 +126,8 @@ const projectsData = [
         }
     },
     image: bookingIasi,
-
+    hero: bookingHero,
+    gridImages: [bookingDesktop1, bookingPhone1, bookingDesktop2, bookingPhone2]
   },
   {
     id: 4,
@@ -133,7 +160,8 @@ const projectsData = [
         }
     },
     image: urbanOasis,
-
+    hero: urbanHero,
+    gridImages: [urbanDesktop1, urbanPhone1, urbanDesktop2, urbanPhone2]
   },
 ];
 
