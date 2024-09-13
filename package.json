@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-sitemap": "node generate-sitemap.js",
-  "build": "npm run generate-sitemap && react-scripts build"
+  "build": "npm run generate-sitemap && vite build"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
