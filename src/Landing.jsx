@@ -9,7 +9,7 @@ import smoothscroll from "smoothscroll-polyfill";
 import "./animations/hover-animation.css";
 
 const Landing = () => {
-  smoothscroll.polyfill();
+  
 
   const [time, setTime] = useState(
     new DateObject({ timezone: "Europe/Bucharest" })
@@ -37,7 +37,7 @@ const Landing = () => {
       const targetOffset = section.offsetTop;
       window.scrollTo({
         top: targetOffset, // Use native scroll for compatibility
-        behavior: "smooth",
+      
       });
     }
   };

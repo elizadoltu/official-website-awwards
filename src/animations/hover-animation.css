@@ -73,4 +73,24 @@
   .hover-h2:hover span span:nth-of-type(2) {
     transform: translateY(0%);
   }
+
+  .slide-in {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: #0f0f0f;
+    transform-origin: bottom;
+  }
+  
+  .slide-out {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: #0f0f0f;
+    transform-origin: top;
+  }
   

@@ -15,31 +15,36 @@ import {
   Route,
   Routes,
   useNavigate,
+  useLocation
 } from "react-router-dom";
 import Lenis from "lenis";
 import "./css/lenis.css";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import usePreloadSVGAssets from "./hooks/usePreloadSVGAssets";
+import { AnimatePresence } from "framer-motion";
+import "./animations/hover-animation.css";
 
-smoothscroll.polyfill();
 gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
+  usePreloadSVGAssets();
   const siteContentRef = useRef(null);
   const lenisRef = useRef();
   const [showLanding, setShowLanding] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Initialize Lenis on component mount
     const lenis = new Lenis({
       duration: 1.2, // Adjust the smoothness of the scroll
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing function
-      direction: 'vertical', 
+      direction: "vertical",
       smooth: true,
     });
 
     // Hook Lenis scroll event to GSAP's ScrollTrigger
-    lenis.on('scroll', () => {
+    lenis.on("scroll", () => {
       ScrollTrigger.update();
     });
 
@@ -111,8 +116,7 @@ const App = () => {
         duration: 1.5,
         ease: "power4.inOut",
         delay: 3.5,
-      })
-      
+      });
 
     // GSAP Animations
     gsap.to(".count", { opacity: 0, delay: 3.5, duration: 0.25 });
@@ -176,8 +180,6 @@ const App = () => {
       duration: 1.5,
       delay: 3.5,
     });
-
-    
   }, []);
 
   useEffect(() => {
@@ -205,6 +207,7 @@ const App = () => {
   };
 
   return (
+  <AnimatePresence mode="wait">
     <ParallaxProvider>
       <div className="overflow-x-hidden w-full">
         <div className="pre-loader">
@@ -225,27 +228,29 @@ const App = () => {
           ref={siteContentRef}
           style={{ zIndex: "-1" }}
         ></div>
-        <Routes>
-          {showLanding && (
-            <>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <CustomCursor />
-                    <Landing />
-                    <About />
-                    <Projects onProjectClick={handleProjectClick} />
-                    <Contact />
-                  </>
-                }
-              />
-              <Route path="/project/:name" element={<SinglePageProject />} />
-            </>
-          )}
-        </Routes>
+        
+          <Routes location={location} key={location.pathname}>
+            {showLanding && (
+              <>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <CustomCursor />
+                      <Landing />
+                      <About />
+                      <Projects onProjectClick={handleProjectClick} />
+                      <Contact />
+                    </>
+                  }
+                />
+                <Route path="/project/:name" element={<SinglePageProject />} />
+              </>
+            )}
+          </Routes>
+       
       </div>
-    </ParallaxProvider>
+    </ParallaxProvider> </AnimatePresence>
   );
 };
 

@@ -41,7 +41,5 @@ body {
   color: var(--font-color);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
 

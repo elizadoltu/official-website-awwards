@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-sitemap": "node generate-sitemap.js",
-  "build": "npm run generate-sitemap && vite build"
+    "build": "npm run generate-sitemap && vite build"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
@@ -16,6 +16,7 @@
     "@react-spring/web": "^9.7.4",
     "@studio-freight/lenis": "^1.0.42",
     "animejs": "^3.2.2",
+    "framer-motion": "^11.5.4",
     "gsap": "^3.12.5",
     "lenis": "^1.1.13",
     "react": "^18.3.1",

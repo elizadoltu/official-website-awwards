@@ -13,7 +13,7 @@ const useAnimations = () => {
       {
         opacity: 1,
         y: 0,
-        duration: 1.2,
+        duration: 0.5,
         stagger: 0.2,
         ease:"power4.inOut",
         scrollTrigger: {
@@ -21,7 +21,8 @@ const useAnimations = () => {
           start: "top 80%",
           end: "bottom 50%",
           toggleActions: "play none none none",
-          markers: false
+          markers: false,
+          once: true,
         }
       }
     );

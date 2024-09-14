@@ -8,11 +8,14 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+
     <Router>
       <App />
     </Router>
+
   </StrictMode>
 );
