@@ -40,7 +40,12 @@ const Available = ({ project }) => {
                 </ul>
               </div>
             </div>
-            <div>
+            <div className="flex flex-col">
+              <Link to={`/`}>
+                  <p className="hover-link -mb-5">
+                        <span><span>home</span><span>home</span></span>
+                      </p>
+              </Link>
               <Link to={`/project/${nextProject.name}`} className="next-project-button">
               <p className="hover-link">
                         <span><span>next project</span><span>next project</span></span>

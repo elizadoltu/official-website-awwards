@@ -1,20 +1,24 @@
 import { useEffect } from "react";
 
 // Preload function for dynamically imported assets
-const preloadSVGs = (files) => {
+const preloadAssets = (files) => {
   for (const path in files) {
     files[path](); // Preload by executing the function returned by import.meta.glob()
   }
 };
 
-const usePreloadSVGAssets = () => {
+const usePreloadAssets = () => {
   useEffect(() => {
-    // Dynamically import all SVG files from the assets directory
+    // Dynamically import all SVG and PNG files from the assets directory
     const svgContext = import.meta.glob("../assets/**/*.svg");
+    const pngContext = import.meta.glob("../assets/**/*.png");
 
-    // Preload all SVGs
-    preloadSVGs(svgContext);
+    // Combine both contexts
+    const combinedContext = { ...svgContext, ...pngContext };
+
+    // Preload all assets
+    preloadAssets(combinedContext);
   }, []);
 };
 
-export default usePreloadSVGAssets;
+export default usePreloadAssets;
