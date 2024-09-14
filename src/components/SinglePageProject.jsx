@@ -42,7 +42,7 @@ const SinglePageProject = () => {
   */
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const { name } = useParams();
-  const project = projectsData.find((p) => p.name === name);
+  const project = projectsData.find((p) => p.name === decodeURIComponent(name));
 
   useEffect(() => {
 

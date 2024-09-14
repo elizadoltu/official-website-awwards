@@ -7,7 +7,7 @@ import ScrollToTop from "../hooks/ScrollToTop";
 
 const Available = ({ project }) => {
   ScrollToTop();
-  const currentIndex = projectsData.findIndex((p) => p.name === project.name);
+  const currentIndex = projectsData.findIndex((p) => p.name === decodeURIComponent(project.name));
   const nextIndex = (currentIndex + 1) % projectsData.length;
   const nextProject = projectsData[nextIndex];
 

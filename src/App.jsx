@@ -203,7 +203,7 @@ const App = () => {
   }, [siteContentRef.current]);
 
   const handleProjectClick = (projectName) => {
-    navigate(`/project/${projectName}`); // Navigate to project page when project is clicked
+    navigate(`/project/${encodeURIComponent(projectName)}`); // Navigate to project page when project is clicked
   };
 
   return (
@@ -233,7 +233,7 @@ const App = () => {
             {showLanding && (
               <>
                 <Route
-                  path="/"
+                  path="/*"
                   element={
                     <>
                       <CustomCursor />

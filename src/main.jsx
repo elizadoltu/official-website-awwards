@@ -14,7 +14,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
 
     <Router>
-      <App />
+    <Routes>
+        <Route path="/*" element={<App />} />
+      </Routes>
     </Router>
 
   </StrictMode>
