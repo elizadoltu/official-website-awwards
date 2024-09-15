@@ -9,20 +9,35 @@ import smoothscroll from "smoothscroll-polyfill";
 import "./animations/hover-animation.css";
 
 const Landing = () => {
-  const [time, setTime] = useState(
-    new DateObject({ timezone: "Europe/Bucharest" })
-  );
+  const [time, setTime] = useState(new DateObject({ timezone: "Europe/Bucharest" }));
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Initialize based on window size
   const smoothScrollWrapperRef = useRef(null);
-  const { ref: titleDesigner } = useParallax({
-    translateX: [10, -20],
-    speed: 10,
-    easing: "easeInOutQuad",
-  });
-  const { ref: titleDeveloper } = useParallax({
-    translateX: [0, 20],
-    speed: 10,
-    easing: "easeInOutQuad",
-  });
+
+  // Add a resize listener to handle screen size changes
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const parallaxConfig = isMobile
+    ? {
+        titleDesigner: { translateX: [-50, 20], speed: 5 }, // Adjust for mobile
+        titleDeveloper: { translateX: [20, -10], speed: 5 },
+      }
+    : {
+        titleDesigner: { translateX: [10, -20], speed: 10, easing: "easeInOutQuad" }, // Desktop values
+        titleDeveloper: { translateX: [0, 20], speed: 10, easing: "easeInOutQuad" },
+      };
+
+  const { ref: titleDesigner } = useParallax(parallaxConfig.titleDesigner);
+  const { ref: titleDeveloper } = useParallax(parallaxConfig.titleDeveloper);
   const speed = 0.08;
   let offset = 0;
   let callScroll;
@@ -62,32 +77,6 @@ const Landing = () => {
     return () => clearInterval(interval);
   }, []);
 
-  /*
-    useEffect(() => {
-
-        
-          const body = document.body;
-            const scrollWrap = document.getElementsByClassName("smooth-scroll-animation")[0];
-
-          const height = scrollWrap.getBoundingClientRect().height - 1;
-          body.style.height = `${Math.floor(height)}px`;
-    
-          const smoothScroll = () => {
-            offset += (window.scrollY - offset) * speed; // Updated to window.scrollY
-            const transformValue = `translateY(-${offset}px) translateZ(0)`;
-            scrollWrap.style.transform = transformValue;
-            callScroll = requestAnimationFrame(smoothScroll);
-            
-          };
-    
-          smoothScroll();
-    
-          // Cleanup animation frame on unmount
-          return () => cancelAnimationFrame(callScroll);
-        
-      }, [smoothScrollWrapperRef]);
-      
-    */
   const hours = time.format("hh");
   const minutes = time.format("mm");
   const ampm = time.format("A");
@@ -100,7 +89,7 @@ const Landing = () => {
     <div className="w-full mt-5 h-screen overflow-hidden">
       <div className="flex justify-between overflow-hidden tablet:flex-row mobile:flex-col">
         <div className="flex justify-center items-center">
-          <div className="flex flex-col font-urbanist custom-animation tablet:ml-5 mobile:-ml-20">
+          <div className="flex flex-col font-urbanist custom-animation tablet:ml-5 mobile:-ml-24">
             <h1>ELIZA - TEODORA DOLTU</h1>
             <h1 className="font-extrabold">DESIGNER & DEVELOPER</h1>
           </div>

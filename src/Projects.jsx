@@ -12,13 +12,18 @@ import CustomProjectCursor from "./custom/CustomProjectCursor";
 import "./animations/hover-animation.css";
 
 gsap.registerPlugin(ScrollTrigger);
+const isMobile = ()=> window.innerHeight <= 768;
 
 const Projects = ({ onProjectClick }) => {
-  const { ref: title } = useParallax({
-    translateX: [10, -40],
-    speed: 10,
-    easing: "easeInOutSine",
-  });
+  
+  const parallaxConfig = isMobile() 
+  ? {
+    title: { translateX: [10, -10], speed: 1, easing: "easeInOutSine" },
+  } 
+  : {
+    title: { translateX: [10, -40], speed: 5, easing: "easeInOutSine" },
+  };
+  const { ref: title } = useParallax(parallaxConfig.title);
 
   const [hoveredProjectId, setHoveredProjectId] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
