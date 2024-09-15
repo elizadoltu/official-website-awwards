@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import projectsData from "../utils/data";
 import { useParallax } from "react-scroll-parallax";
@@ -15,40 +15,33 @@ const preloadImages = (images) => {
   });
 };
 
+const isMobile = () => window.innerWidth <= 768; // Adjust based on your breakpoint for mobile
+
 const SinglePageProject = () => {
   ScrollToTop();
-  const { ref: imageProject } = useParallax({ speed: 10 });
-  const { ref: firstName } = useParallax({
-    translateX: [-100, 20],
-    speed: 10,
-    easing: "easeInOutQuad",
-  });
-  const { ref: lastName } = useParallax({
-    translateX: [30, -20],
-    speed: 10,
-    easing: "easeInOutQuad",
-  });
-  /*
-  const { ref: month } = useParallax({
-    translateX: [10, -20],
-    speed: 10,
-    easing: "easeInOutSine",
-  });
-  const { ref: year } = useParallax({
-    translateX: [0, 80],
-    speed: 10,
-    easing: "easeInOutSine",
-  });
-  */
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const { name } = useParams();
   const project = projectsData.find((p) => p.name === decodeURIComponent(name));
 
-  useEffect(() => {
+  const parallaxConfig = isMobile()
+    ? {
+        firstName: { translateX: [-20, -10], speed: 5 }, // Adjust for mobile
+        lastName: { translateX: [20, -10], speed: 5 },
+        imageProject: { speed: 5 },
+      }
+    : {
+        firstName: { translateX: [-50, 20], speed: 10 }, // Desktop values
+        lastName: { translateX: [30, -20], speed: 10 },
+        imageProject: { speed: 10 },
+      };
 
+  const { ref: firstName } = useParallax(parallaxConfig.firstName);
+  const { ref: lastName } = useParallax(parallaxConfig.lastName);
+  const { ref: imageProject } = useParallax(parallaxConfig.imageProject);
+
+  useEffect(() => {
     if (project) {
       preloadImages(project.gridImages);
-
       const timer = setTimeout(() => setImagesLoaded(true), 500);
       return () => clearTimeout(timer);
     }
@@ -59,11 +52,11 @@ const SinglePageProject = () => {
       <CustomCursor />
       {project ? (
         <div className="w-full">
-          <div className="font-clash-grotesk font-bold uppercase w-full text-12xl">
-            <h1 className="-mt-20 -ml-40" ref={firstName}>
+          <div className="font-clash-grotesk font-bold uppercase w-full tablet:text-12xl mobile:text-7xl">
+            <h1 className="tablet:-mt-5 tablet:-ml-40 mobile:mt-10" ref={firstName}>
               {project.firstname}/
             </h1>
-            <h1 className="-mt-64 ml-64" ref={lastName}>
+            <h1 className="tablet:-mt-28 tablet:ml-64" ref={lastName}>
               {project.lastname}
             </h1>
           </div>
@@ -75,11 +68,13 @@ const SinglePageProject = () => {
             ))}
           </div>
           <div
-            className="flex items-end font-urbanist p-3 uppercase text-lg"
+            className="flex items-end mobile:flex-col tablet:flex-row font-urbanist p-3 uppercase text-lg mobile:text-sm tablet:text-lg"
             ref={imageProject}
           >
-            <p className="text-right mr-3">{project.details}</p>
-            <div>
+            <p className="tablet:text-right mobile:text-left mr-3">
+              {project.details}
+            </p>
+            <div className="mobile:mt-8 tablet:mt-0">
               <p className="mb-3">{project.description}</p>
               <img
                 src={project.hero}
@@ -88,16 +83,16 @@ const SinglePageProject = () => {
               />
             </div>
           </div>
-          <div className="w-full -mt-10 text-10xl font-clash-grotesk">
-            <h1 className="flex justify-end -mr-32">
+          <div className="w-full tablet:-mt-10 tablet:text-10xl mobile:text-7xl font-clash-grotesk">
+            <h1 className="flex justify-end tablet:-mr-32">
               {project.month}/
             </h1>
             <div className="flex flex-col items-center">
               {" "}
-              <h1 className="-mt-32 italic">
+              <h1 className="tablet:-mt-32 italic">
                 &#40;{project.year}/&#41;
               </h1>
-              <ul className="list-none -ml-96">
+              <ul className="list-none tablet:-ml-96 mobile:-ml-20 mobile:mt-10">
                 {project.skills.map((skill, i) => (
                   <li
                     key={i}
@@ -109,7 +104,7 @@ const SinglePageProject = () => {
               </ul>
             </div>
           </div>
-          <div className="grid grid-cols-2 grid-rows-2 w-full h-full gap-2 p-3 mt-10">
+          <div className="grid tablet:grid-cols-2 tablet:grid-rows-2 w-full h-full gap-2 p-3 mt-10 mobile:grid-cols-1">
             {project.gridImages.map((image, index) => (
               <img
                 key={index}
@@ -119,7 +114,7 @@ const SinglePageProject = () => {
               />
             ))}
           </div>
-          <Available project={project}/>
+          <Available project={project} />
         </div>
       ) : (
         <p>Project not found</p>
