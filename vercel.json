@@ -1,9 +1,6 @@
 {
     "rewrites": [
       { "source": "/(.*)", "destination": "/" }
-    ],
-    "routes": [
-    { "source": "/pdf/(.*)", "destination": "/pdf/$1" }
-  ]
+    ]
   }
   
