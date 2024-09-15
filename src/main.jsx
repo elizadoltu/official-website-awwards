@@ -9,10 +9,11 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-
+    <Analytics />
     <Router>
     <Routes>
         <Route path="/*" element={<App />} />
