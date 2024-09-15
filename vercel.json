@@ -3,7 +3,7 @@
       { "source": "/(.*)", "destination": "/" }
     ],
     "routes": [
-    { "src": "/pdf/(.*)", "dest": "/pdf/$1" }
+    { "source": "/pdf/(.*)", "destination": "/pdf/$1" }
   ]
   }
   
