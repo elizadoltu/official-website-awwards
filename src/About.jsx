@@ -9,7 +9,7 @@ import gsap from "gsap";
 import useAnimations from "./animations/useAnimation";
 
 const About = () => {
-  const { ref: textRef } = useParallax({ speed: 50 });
+  const { ref: textRef } = useParallax({ speed: 10 });
   
   const smoothScrollWrapperRef = useRef(null);
   const speed = 0.08;
@@ -80,11 +80,11 @@ const About = () => {
 
   return (
     <div
-      className="w-full min-h-screen flex justify-between font-urbanist relative"
+      className="w-full min-h-screen flex tablet:flex-row mobile:flex-col justify-between font-urbanist relative "
       id="about"
     >
       <div className="ml-5" ref={textRef}>
-        <h1 className="font-extrabold text-9xl about-title">General Info</h1>
+        <h1 className="font-extrabold tablet:text-9xl mobile:text-4xl about-title">General Info</h1>
         <div className="flex mt-5 ml-2 p-about">
           <p className="font-extrabold w-20 ">Full name</p>
           <p className="ml-28">Eliza - Teodora Doltu</p>
@@ -98,7 +98,7 @@ const About = () => {
           <p className="ml-28">Student</p>
         </div>
       </div>
-      <div className="flex flex-col w-2/5">
+      <div className="flex flex-col tablet:w-2/5 mobile:w-full mobile:p-2">
         <div>
           <img src={aboutPhoto} alt="image of eliza teodora doltu on a beach" />
         </div>

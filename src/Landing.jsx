@@ -9,8 +9,6 @@ import smoothscroll from "smoothscroll-polyfill";
 import "./animations/hover-animation.css";
 
 const Landing = () => {
-  
-
   const [time, setTime] = useState(
     new DateObject({ timezone: "Europe/Bucharest" })
   );
@@ -37,7 +35,6 @@ const Landing = () => {
       const targetOffset = section.offsetTop;
       window.scrollTo({
         top: targetOffset, // Use native scroll for compatibility
-      
       });
     }
   };
@@ -54,8 +51,8 @@ const Landing = () => {
       opacity: 1,
       ease: "power4.inOut",
       duration: 1.5,
-      delay: 0.5, 
-      stagger: 0.2, 
+      delay: 0.5,
+      stagger: 0.2,
     });
 
     const interval = setInterval(() => {
@@ -100,19 +97,19 @@ const Landing = () => {
   };
 
   return (
-    <div className="w-full mt-5 min-h-screen overflow-hidden">
-      <div className="flex justify-between overflow-hidden">
+    <div className="w-full mt-5 h-screen overflow-hidden">
+      <div className="flex justify-between overflow-hidden tablet:flex-row mobile:flex-col">
         <div className="flex justify-center items-center">
-          <div className="flex flex-col font-urbanist custom-animation ml-5">
+          <div className="flex flex-col font-urbanist custom-animation tablet:ml-5 mobile:-ml-20">
             <h1>ELIZA - TEODORA DOLTU</h1>
             <h1 className="font-extrabold">DESIGNER & DEVELOPER</h1>
           </div>
-          <div className="flex flex-col ml-3 font-bold text-white custom-animation">
+          <div className="flex flex-col ml-3  font-bold text-white custom-animation">
             <h1>16</h1>
             <h1>07</h1>
           </div>
         </div>
-        <div className="font-urbanist custom-animation">
+        <div className="font-urbanist custom-animation mobile:mt-5 tablet:mt-0 mobile:ml-10 tablet:ml-0">
           <p>LOCATION</p>
           <p className="font-extrabold">
             IASI, RO, {hours}
@@ -120,7 +117,7 @@ const Landing = () => {
             {minutes} {ampm}
           </p>
         </div>
-        <div className="font-urbanist flex flex-col custom-animation mr-5">
+        <div className="font-urbanist flex flex-col custom-animation mr-5 mobile:mt-5 tablet:mt-0 mobile:ml-10">
           <p>NAVIGATION</p>
           <div className="flex font-extrabold z-10">
             <a
@@ -148,25 +145,23 @@ const Landing = () => {
           </div>
         </div>
       </div>
-      <div className="custom-animation overflow-hidden">
+      <div className="custom-animation mobile:flex mobile:flex-col mobile:justify-center mobile:text-8xl tablet:text-12xl mobile:mt-20 tablet:mt-0">
         <div
-          className="flex justify-center items-center text-12xl font-clash-grotesk ml-80 -mr-96"
+          className="flex justify-center items-center font-clash-grotesk tablet:ml-80 tablet:-mr-96"
           ref={titleDesigner}
         >
           <img
             src={svgLanding}
             alt="image with a metal thing"
-            className="z-10 -mr-48"
+            className="z-10 -mr-48 mobile:w-40 tablet:w-auto"
           />
           <h1>DESIGNER</h1>
         </div>
-        <h1
-          className="flex justify-center items-center text-12xl font-clash-grotesk -mt-72 mr-96 -ml-96"
-          ref={titleDeveloper}
-        >
-          DEVELOPER
-        </h1>
-        <h2 className="flex justify-center items-start font-urbanist -ml-96 -mt-32">
+        <div className="flex justify-center items-center font-clash-grotesk tablet:-mt-52 tablet:mr-96 tablet:-ml-96 mobile:-mt-20">
+          <h1 ref={titleDeveloper}>DEVELOPER</h1>
+        </div>
+
+        <h2 className="flex justify-center items-start font-urbanist tablet:-ml-96 tablet:text-lg mobile:text-sm">
           Born to create digital art
         </h2>
       </div>

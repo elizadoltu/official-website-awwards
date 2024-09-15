@@ -1,10 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens:{
+      'mobile': '300px',
+      'tablet': '768px',
+      ...defaultTheme.screens,
+    },
     extend: {
       fontFamily: {
         'urbanist' : ['Urbanist', 'sans-serif'],

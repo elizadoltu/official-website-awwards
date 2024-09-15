@@ -47,20 +47,20 @@ const Projects = ({ onProjectClick }) => {
 
   return (
     <div
-      className="z-30 w-full min-h-screen overflow-hidden relative font-urbanist flex flex-col"
+      className="z-30 w-full min-h-screen overflow-hidden relative font-urbanist flex flex-col mobile:mt-40 tablet:mt-10"
       id="work"
       onMouseMove={handleMouseMove}
     >
       <div className="flex flex-col justify-center items-center">
-        <div className="flex ml-96" ref={title}>
+        <div className="flex tablet:ml-96 mobile:ml-20" ref={title}>
           <img
             src={abstractPhoto}
             alt="image with an abstract object"
-            className="z-10"
+            className="z-10 mobile:w-32 tablet:w-auto"
           />
-          <h1 className="font-clash-grotesk text-12xl -ml-52">PROJECTS</h1>
+          <h1 className="font-clash-grotesk tablet:text-12xl mobile:text-8xl tablet:-ml-52 mobile:-ml-20">PROJECTS</h1>
         </div>
-        <p className="w-96 -ml-80 -mt-32">
+        <p className="tablet:w-96 tablet:-ml-80 tablet:-mt-32 mobile:w-full p-2">
           Explore a curated selection of projects I’ve guided from concept to
           completion. Each piece reflects my skills, creativity, and dedication
           to bringing ideas to life.
@@ -76,7 +76,7 @@ const Projects = ({ onProjectClick }) => {
               onMouseLeave={() => setHoveredProjectId(null)}
               style={{ cursor: "pointer" }}
             >
-              <h2 className="hover-h2 uppercase font-urbanist font-bold text-10xl hover:text-gray-500">
+              <h2 className="hover-h2 uppercase font-urbanist font-bold tablet:text-10xl mobile:text-6xl hover:text-gray-500">
                 <span>
                   <span>{project.name}</span>
                   <span>{project.name}</span>
@@ -86,7 +86,7 @@ const Projects = ({ onProjectClick }) => {
               {project.keywords.map((keyword, i) => (
                 <h2
                   key={i}
-                  className="hover-h2 uppercase font-urbanist font-bold text-10xl hover:text-gray-500"
+                  className="hover-h2 uppercase font-urbanist font-bold tablet:text-10xl mobile:text-6xl hover:text-gray-500"
                 >
                   <span>
                     <span>{keyword}</span>
