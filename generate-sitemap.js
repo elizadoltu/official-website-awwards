@@ -12,7 +12,7 @@ const routes = [
 ];
 
 const generateSitemap = async () => {
-  const sitemap = new SitemapStream({ hostname: 'https://official-website-awwards.vercel.app/' });
+  const sitemap = new SitemapStream({ hostname: 'https://elizadoltuofficial.net/' });
   const writeStream = createWriteStream(join(__dirname, 'public', 'sitemap.xml'));
 
   sitemap.pipe(writeStream);

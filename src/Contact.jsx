@@ -81,7 +81,7 @@ const Contact = () => {
                 <ul>
                   <li>
                     <a
-                      href="./pdf/Resume - short.pdf"
+                      href="/pdf/Resume - short.pdf"
                       download="Resume Eliza - Teodora Doltu"
                       className="hover-link"
                       target="_blank"

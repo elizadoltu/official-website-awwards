@@ -1,4 +1,9 @@
 User-agent: *
+Disallow: /admin/
 Allow: /
 
-Sitemap: https://official-website-awwards.vercel.app/sitemap.xml
+# Sitemaps
+Sitemap: https://elizadoltuofficial.net/sitemap.xml
+
+# Optional crawl delay for bots
+Crawl-delay: 10
