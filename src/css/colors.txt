@@ -1,0 +1,19 @@
+:root {
+  --background-color: #ECECED;
+  --font-color: #1C1C22;
+}
+
+:root {
+  --background-color: #D1D1D3;
+  --font-color: #010101;
+}
+
+:root {
+  --background-color: #DBDDDD;
+  --font-color: #494C53;
+}
+
+:root {
+  --background-color: #252222;
+  --font-color: #B4B0A5;
+}

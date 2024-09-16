@@ -13,7 +13,7 @@ const Available = ({ project }) => {
 
   return (
     <div className="tablet:w-full tablet:pb-5 mt-40">
-      <div className="absolute tablet:-mt-40 mobile:-mt-12">
+      <div className="absolute tablet:-mt-40 right-0 mobile:-mt-12">
         <img src={contactAbstract} alt="abstract thing" 
         className="mobile:w-28 tablet:w-auto"/>
       </div>

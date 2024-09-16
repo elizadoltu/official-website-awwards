@@ -4,6 +4,8 @@ import { useParallax } from "react-scroll-parallax";
 import "./css/styles.css";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import aboutImage2 from "./assets/about-image-2.jpg";
+import aboutImage3 from "./assets/about-image-3.jpg";
 
 // Utility function to determine if the device is mobile
 const isMobile = () => window.innerHeight <= 768;
@@ -86,6 +88,7 @@ const About = () => {
           <img
             src={aboutPhoto}
             alt="image of eliza teodora doltu on a beach"
+            className="rounded-xl filter grayscale hover:grayscale-0 transition duration-500 ease-in-out"
           />
         </div>
         <div className="w-11/12">

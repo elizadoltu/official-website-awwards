@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 :root {
-  --background-color: #DBDBDB;
-  --font-color: #18181A;
+  --background-color: #131313;
+  --font-color: #d6d6d6;
 }
 
 @font-face {

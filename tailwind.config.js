@@ -34,6 +34,9 @@ export default {
       },
       lineHeight: {
         '1rem' : '9.5rem'
+      },
+      backgroundImages: {
+        'noise': 'url("/assets/noisy-background.jpg")'
       }
     },
   },

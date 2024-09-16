@@ -79,7 +79,7 @@ const SinglePageProject = () => {
               <img
                 src={project.hero}
                 alt="image of a project"
-                className="rounded-md"
+                className="rounded-md filter grayscale hover:grayscale-0 transition duration-500 ease-in-out"
               />
             </div>
           </div>
@@ -89,7 +89,7 @@ const SinglePageProject = () => {
             </h1>
             <div className="flex flex-col items-center">
               {" "}
-              <h1 className="tablet:-mt-32 italic">
+              <h1 className="tablet:-mt-10 italic">
                 &#40;{project.year}/&#41;
               </h1>
               <ul className="list-none tablet:-ml-96 mobile:-ml-20 mobile:mt-10">

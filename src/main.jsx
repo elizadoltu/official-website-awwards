@@ -10,10 +10,12 @@ import {
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Analytics />
+    <SpeedInsights />
     <Router>
     <Routes>
         <Route path="/*" element={<App />} />
