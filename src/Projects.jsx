@@ -81,7 +81,7 @@ const Projects = ({ onProjectClick }) => {
               onMouseLeave={() => setHoveredProjectId(null)}
               style={{ cursor: "pointer" }}
             >
-              <h2 className="hover-h2 uppercase font-urbanist font-bold tablet:text-10xl mobile:text-6xl hover:text-gray-500">
+              <h2 className="hover-h2 uppercase font-urbanist font-bold tablet:text-10xl mobile:text-6xl hover:text-gray-500 h2-animation">
                 <span>
                   <span>{project.name}</span>
                   <span>{project.name}</span>
@@ -91,7 +91,7 @@ const Projects = ({ onProjectClick }) => {
               {project.keywords.map((keyword, i) => (
                 <h2
                   key={i}
-                  className="hover-h2 uppercase font-urbanist font-bold tablet:text-10xl mobile:text-6xl hover:text-gray-500"
+                  className="hover-h2 uppercase font-urbanist font-bold tablet:text-10xl mobile:text-6xl hover:text-gray-500 h2-animation"
                 >
                   <span>
                     <span>{keyword}</span>
