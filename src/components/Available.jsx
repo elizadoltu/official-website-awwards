@@ -17,10 +17,10 @@ const Available = ({ project }) => {
         <img src={contactAbstract} alt="abstract thing" 
         className="mobile:w-28 tablet:w-auto"/>
       </div>
-      <div className="flex justify-center items-center main-container">
-        <div className="tablet:pt-10 tablet:pl-10 tablet:pr-10 mobile:p-6 rounded-3xl bg-font-color uppercase flex flex-col justify-between">
+      <div className="flex justify-center items-center main-container w-full grow p-5">
+        <div className="tablet:pt-10 tablet:pl-10 tablet:pr-10 mobile:p-6 rounded-3xl bg-font-color uppercase flex flex-col justify-between grow w-full">
           <div className="flex flex-col tablet:items-end mobile:text-6xl mobile:items-start mobile:ml-0 tablet:ml-0">
-            <h1 className="tablet:text-13xl font-clash-grotesk text-bg-color uppercase tablet:-mt-12">
+            <h1 className="tablet:text-13xl font-clash-grotesk text-bg-color uppercase tablet:-mt-12 w-full flex jus">
               AVAILABLE
             </h1>
             <p className="text-bg-color tablet:-mt-12 tablet:w-2/6 mobile:w-80 tablet:text-right tablet:text-lg mobile:text-sm">

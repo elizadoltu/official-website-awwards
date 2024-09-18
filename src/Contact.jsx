@@ -12,10 +12,10 @@ const Contact = () => {
           className="mobile:w-28 tablet:w-auto"
         />
       </div>
-      <div className="flex justify-center items-center main-container">
-        <div className="pt-5 pl-5 pr-5 rounded-3xl bg-font-color uppercase flex flex-col justify-between">
-          <div className="flex flex-col tablet:items-end mobile:text-7xl mobile:items-start mobile:ml-0 tablet:ml-0">
-            <h1 className="tablet:text-14xl font-clash-grotesk text-bg-color uppercase tablet:-mt-12">
+      <div className="flex justify-center items-center main-container w-full grow p-5">
+        <div className="pt-5 pl-5 pr-5 rounded-3xl bg-font-color uppercase flex flex-col justify-between grow w-full">
+          <div className="flex flex-col tablet:items-end mobile:text-7xl mobile:items-start mobile:ml-0 tablet:ml-0 grow">
+            <h1 className="tablet:text-14xl font-clash-grotesk text-bg-color uppercase tablet:-mt-12 w-full flex justify-center">
               contact
             </h1>
             <p className="text-bg-color tablet:-mt-16 tablet:w-2/6 mobile:w-80 tablet:text-right tablet:text-lg mobile:text-sm">
