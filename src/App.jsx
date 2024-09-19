@@ -203,7 +203,7 @@ usePreloadSVGAssets();
         </div>
       </div>
       <div className="overlay">
-        <div className="col mobile:text-sm tablet:text-3xl">
+        <div className="col mobile:text-sm tablet:text-5xl">
           <h2 className="headline">
             <div className="headline-text">A romanian</div>
           </h2>

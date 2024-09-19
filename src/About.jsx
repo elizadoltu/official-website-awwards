@@ -65,7 +65,7 @@ const About = () => {
       className="w-full min-h-screen flex tablet:flex-row mobile:flex-col justify-between font-urbanist relative"
       id="about"
     >
-      <div className="ml-5" ref={textRef}>
+      <div className="ml-5 mobile:mb-20 tablet:mb-0" ref={textRef}>
         <h1 className="font-extrabold tablet:text-9xl mobile:text-4xl about-title">
           General Info
         </h1>
