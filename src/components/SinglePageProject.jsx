@@ -48,7 +48,7 @@ const SinglePageProject = () => {
   }, [project]);
 
   return (
-    <div className="w-full bg-bg-color text-font-color">
+    <div className="w-full bg-bg-color text-font-color overflow-hidden">
       <CustomCursor />
       {project ? (
         <div className="w-full">
