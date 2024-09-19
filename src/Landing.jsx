@@ -93,7 +93,7 @@ const Landing = () => {
             <h1>ELIZA - TEODORA DOLTU</h1>
             <h1 className="font-extrabold">DESIGNER & DEVELOPER</h1>
           </div>
-          <div className="flex flex-col ml-3  font-bold text-white custom-animation">
+          <div className="flex flex-col ml-3  font-bold text-white custom-animation font-urbanist">
             <h1>16</h1>
             <h1>07</h1>
           </div>
