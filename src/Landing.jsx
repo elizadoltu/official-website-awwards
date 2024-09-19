@@ -273,13 +273,13 @@ const Landing = () => {
       <div className="overlay">
   <div className="col">
     <h2 className="headline">
-      <div className="headline-text">An portugese</div>
+      <div className="headline-text">An romanian</div>
     </h2>
     <h2 className="headline">
-      <div className="headline-text">visual photographer</div>
+      <div className="headline-text">web dev & designer</div>
     </h2>
     <h2 className="headline">
-      <div className="headline-text">based in spain</div>
+      <div className="headline-text">based in iasi</div>
     </h2>
   </div>
   <div className="col">
