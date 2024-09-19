@@ -13,7 +13,6 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { AnimatePresence } from "framer-motion";
 import "./css/lenis.css";
-import "./css/loader.css";
 import "./animations/hover-animation.css";
 import png1 from "./images/1.png";
 import png2 from "./images/2.png";
@@ -40,71 +39,9 @@ const App = () => {
   const lenisRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
-  usePreloadSVGAssets();
+usePreloadSVGAssets();
 
-  useEffect(() => {
-    // Initial animation
-    gsap.from(".title-text div", {
-      duration: 1.5,
-      yPercent: 100,
-      ease: "power4.inOut",
-      stagger: 0.5,
-    });
 
-    gsap.to(".title-text", {
-      duration: 1.5,
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-      ease: "power4.inOut",
-      stagger: 0.5,
-    });
-
-    const handleOverlayClick = () => {
-      gsap.to(".title-text div", {
-        duration: 1.5,
-        yPercent: -100,
-        ease: "power4.inOut",
-        stagger: 0.5,
-      });
-
-      gsap.to(".title-text", {
-        duration: 1.5,
-        clipPath: "polygon(0 85%, 100% 85%, 100% 100%, 0% 100%)",
-        ease: "power4.inOut",
-        stagger: 0.5,
-      });
-
-      gsap.to(".overlay-content", {
-        duration: 2,
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-        ease: "power4.inOut",
-      });
-
-      gsap.to(".loader-image", {
-        duration: 2,
-        clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0 0%)",
-        ease: "power4.inOut",
-        stagger: 1.5,
-      });
-
-      gsap.to(".loader-wrapper", {
-        duration: 2,
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-        ease: "power4.inOut",
-        delay: 2,
-      });
-    };
-
-    const overlay = document.querySelector(".overlay-content");
-    if (overlay) {
-      overlay.addEventListener("click", handleOverlayClick);
-    }
-
-    return () => {
-      if (overlay) {
-        overlay.removeEventListener("click", handleOverlayClick);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -146,68 +83,25 @@ const App = () => {
   };
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <ParallaxProvider>
-        <div className="container-main-content">
           <Routes location={location} key={location.pathname}>
-            <Route
-              path="/*"
-              element={
-                <>
-                  <CustomCursor />
-                  <Landing />
-                  <About />
-                  <Projects onProjectClick={handleProjectClick} />
-                  <Contact />
-                </>
-              }
-            />
-            <Route path="/project/:name" element={<SinglePageProject />} />
+            <>
+              <Route
+                path="/*"
+                element={
+                  <>
+                    <CustomCursor />
+                    <Landing />
+                    <About />
+                    <Projects onProjectClick={handleProjectClick} />
+                    <Contact />
+                  </>
+                }
+              />
+              <Route path="/project/:name" element={<SinglePageProject />} />
+            </>
           </Routes>
-        </div>
-        <div className="loader-wrapper">
-          <div className="loader-image">
-            <img src={png1} alt="" />
-          </div>
-          <div className="loader-image">
-            <img src={png2} alt="" />
-          </div>
-          <div className="loader-image">
-            <img src={png3} alt="" />
-          </div>
-          <div className="loader-image">
-            <img src={png4} alt="" />
-          </div>
-          <div className="loader-image">
-            <img src={png5} alt="" />
-          </div>
-          <div className="loader-image">
-            <img src={png6} alt="" />
-          </div>
-          <div className="loader-image reveal">
-            <img src={png7} alt="" />
-          </div>
-        </div>
-        <div className="overlay-content font-urbanist text-font-color">
-          <div className="overlay-col">
-            <h2>
-              <div>A romanian</div>
-            </h2>
-            <h2>
-              <div>web dev & designer</div>
-            </h2>
-            <h2>
-              <div>based in iasi</div>
-            </h2>
-          </div>
-          <div className="overlay-col">
-            <h2>
-              <div>
-                <span>click</span> anywhere to continue
-              </div>
-            </h2>
-          </div>
-        </div>
       </ParallaxProvider>
     </AnimatePresence>
   );

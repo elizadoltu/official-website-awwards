@@ -11,6 +11,7 @@ import useAnimations from "./animations/useAnimation";
 import CustomProjectCursor from "./custom/CustomProjectCursor";
 import "./animations/hover-animation.css";
 
+
 gsap.registerPlugin(ScrollTrigger);
 const isMobile = ()=> window.innerHeight <= 768;
 
@@ -48,7 +49,6 @@ const Projects = ({ onProjectClick }) => {
     config: { tension: 350, friction: 50, precision: 0.1 },
   });
 
-  useAnimations();
 
   return (
     <div

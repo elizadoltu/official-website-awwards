@@ -1,54 +1,43 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-nav {
-  position: fixed;
-  width: 100%;
-  padding: 1em;
-  display: flex;
-  justify-content: space-between;
-}
-
-nav p {
-  font-size: 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-
-.loader-wrapper {
+.loader {
   position: fixed;
   width: 100vw;
   height: 100vh;
+  z-index: 100;
   clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
 }
 
-.loader-image {
+.loader .img-container {
   position: absolute;
   width: 100vw;
   height: 100vh;
   clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 }
 
-.overlay-content {
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  top:0;
   position: fixed;
   width: 100vw;
   height: 100vh;
+  z-index: 100;
   background: #0f0f0f;
   color: #fff;
   display: flex;
   clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
 }
 
-.overlay-col {
+.col {
   width: 50%;
   padding: 1em;
 }
 
-.overlay-col h2 {
+.headline {
+  z-index: 100;
   margin: 0;
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   font-size: 60px;
@@ -57,12 +46,12 @@ nav p {
   line-height: 1;
 }
 
-.overlay-col:nth-child(2) h2 {
+.col:nth-child(2) .headline {
   font-size: 24px;
   text-align: right;
   color: gray;
 }
 
-.overlay-col:nth-child(2) h2 span {
+.col:nth-child(2) .headline span {
   color: #fff;
 }
