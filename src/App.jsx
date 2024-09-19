@@ -30,6 +30,8 @@ import {
 } from "react-router-dom";
 import usePreloadSVGAssets from "./hooks/usePreloadSVGAssets";
 import "./animations/hover-animation.css";
+import "./css/loader.css";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,9 +84,82 @@ usePreloadSVGAssets();
     navigate(`/project/${encodeURIComponent(projectName)}`); // Navigate to project page when project is clicked
   };
 
+  useEffect(() => {
+    gsap.from(".headline-text", {
+      yPercent: 100,
+      ease: "power4.inOut",
+      stagger: {
+        amount: 0.5,
+      },
+      duration: 1.5,
+    });
+  
+    gsap.to(
+      ".headline",
+      {
+        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        ease: "power4.inOut",
+        stagger: {
+          amount: 0.5,
+        },
+        duration: 1.5,
+      },
+      0
+    );
+  
+    let overlay = document.querySelector(".overlay");
+    overlay.addEventListener("click", function () {
+      gsap.to(".headline-text", {
+        yPercent: -100,
+        ease: "power4.inOut",
+        stagger: {
+          amount: 0.5,
+        },
+        duration: 1.5,
+      });
+  
+      gsap.to(
+        ".headline",
+        {
+          clipPath: "polygon(0 85%, 100% 85%, 100% 100%, 0% 100%)",
+          ease: "power4.inOut",
+          stagger: {
+            amount: 0.5,
+          },
+          duration: 1.5,
+        },
+        0
+      );
+  
+      gsap.to(".overlay", {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        ease: "power4.inOut",
+        duration: 2,
+      });
+  
+      gsap.to(".img-container", {
+        clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0 0%)",
+        ease: "power4.inOut",
+        stagger: {
+          amount: 1.5,
+        },
+        duration: 2,
+      });
+  
+      gsap.to(".loader", {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        ease: "power4.inOut",
+        delay: 2,
+        duration: 2,
+      });
+    });
+  }, []);
+  
+
   return (
     <AnimatePresence mode="wait">
       <ParallaxProvider>
+        <div>
           <Routes location={location} key={location.pathname}>
             <>
               <Route
@@ -102,6 +177,51 @@ usePreloadSVGAssets();
               <Route path="/project/:name" element={<SinglePageProject />} />
             </>
           </Routes>
+        </div>
+          
+          <div className="loader">
+        <div className="img-container">
+          <img src={png1} alt="" />
+        </div>
+        <div className="img-container">
+          <img src={png2} alt="" />
+        </div>
+        <div className="img-container">
+          <img src={png3} alt="" />
+        </div>
+        <div className="img-container">
+          <img src={png4} alt="" />
+        </div>
+        <div className="img-container">
+          <img src={png5} alt="" />
+        </div>
+        <div className="img-container">
+          <img src={png6} alt="" />
+        </div>
+        <div className="img-container">
+          <img src={png7} alt="" />
+        </div>
+      </div>
+      <div className="overlay">
+        <div className="col">
+          <h2 className="headline">
+            <div className="headline-text">A romanian</div>
+          </h2>
+          <h2 className="headline">
+            <div className="headline-text">web dev & designer</div>
+          </h2>
+          <h2 className="headline">
+            <div className="headline-text">based in iasi</div>
+          </h2>
+        </div>
+        <div className="col">
+          <h2 className="headline">
+            <div className="headline-text">
+              <span>click</span> anywhere to continue
+            </div>
+          </h2>
+        </div>
+      </div>
       </ParallaxProvider>
     </AnimatePresence>
   );
