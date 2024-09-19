@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import Landing from "./Landing";
+import anime from "animejs";
+import "./css/styles.css";
+import About from "./About";
+import Projects from "./Projects";
+import CustomCursor from "./utils/CustomCursor";
+import Contact from "./Contact";
+import SinglePageProject from "./components/SinglePageProject";
 import Lenis from "lenis";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { ParallaxProvider } from "react-scroll-parallax";
@@ -14,6 +22,15 @@ import png4 from "./images/4.png";
 import png5 from "./images/5.png";
 import png6 from "./images/6.png";
 import png7 from "./images/7.png";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import usePreloadSVGAssets from "./hooks/usePreloadSVGAssets";
+import "./animations/hover-animation.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +38,9 @@ const App = () => {
   const [showLanding, setShowLanding] = useState(false);
   const siteContentRef = useRef(null);
   const lenisRef = useRef();
+  const navigate = useNavigate();
+  const location = useLocation();
+usePreloadSVGAssets();
 
   useEffect(() => {
     // Initial animation
@@ -86,7 +106,6 @@ const App = () => {
     };
   }, []);
 
-
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -122,37 +141,73 @@ const App = () => {
     }
   }, [siteContentRef.current]);
 
+  const handleProjectClick = (projectName) => {
+    navigate(`/project/${encodeURIComponent(projectName)}`); // Navigate to project page when project is clicked
+  };
+
   return (
     <AnimatePresence mode="wait">
       <ParallaxProvider>
         <div className="container">
-          <nav>
-            <div className="logo">
-              <p>codegrid</p>
-            </div>
-            <div className="menu">
-              <p>menu</p>
-            </div>
-          </nav>
-          <h1>your site content goes here</h1>
+          <Routes location={location} key={location.pathname}>
+            <>
+              <Route
+                path="/*"
+                element={
+                  <>
+                    <CustomCursor />
+                    <Landing />
+                    <About />
+                    <Projects onProjectClick={handleProjectClick} />
+                    <Contact />
+                  </>
+                }
+              />
+              <Route path="/project/:name" element={<SinglePageProject />} />
+            </>
+          </Routes>
         </div>
         <div className="loader">
-          <div className="img"><img src={png1} alt="" /></div>
-          <div className="img"><img src={png2} alt="" /></div>
-          <div className="img"><img src={png3} alt="" /></div>
-          <div className="img"><img src={png4} alt="" /></div>
-          <div className="img"><img src={png5} alt="" /></div>
-          <div className="img"><img src={png6} alt="" /></div>
-          <div className="img reveal"><img src={png7} alt="" /></div>
+          <div className="img">
+            <img src={png1} alt="" />
+          </div>
+          <div className="img">
+            <img src={png2} alt="" />
+          </div>
+          <div className="img">
+            <img src={png3} alt="" />
+          </div>
+          <div className="img">
+            <img src={png4} alt="" />
+          </div>
+          <div className="img">
+            <img src={png5} alt="" />
+          </div>
+          <div className="img">
+            <img src={png6} alt="" />
+          </div>
+          <div className="img reveal">
+            <img src={png7} alt="" />
+          </div>
         </div>
         <div className="overlay font-urbanist text-font-color">
           <div className="col">
-            <h2><div>An portuguese</div></h2>
-            <h2><div>visual photographer</div></h2>
-            <h2><div>based in Spain</div></h2>
+            <h2>
+              <div>A romanian</div>
+            </h2>
+            <h2>
+              <div>web dev & designer</div>
+            </h2>
+            <h2>
+              <div>based in iasi</div>
+            </h2>
           </div>
           <div className="col">
-            <h2><div><span>click</span> anywhere to continue</div></h2>
+            <h2>
+              <div>
+                <span>click</span> anywhere to continue
+              </div>
+            </h2>
           </div>
         </div>
       </ParallaxProvider>
