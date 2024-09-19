@@ -40,18 +40,18 @@ const App = () => {
   const lenisRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
-usePreloadSVGAssets();
+  usePreloadSVGAssets();
 
   useEffect(() => {
     // Initial animation
-    gsap.from("h2 div", {
+    gsap.from(".title-text div", {
       duration: 1.5,
       yPercent: 100,
       ease: "power4.inOut",
       stagger: 0.5,
     });
 
-    gsap.to("h2", {
+    gsap.to(".title-text", {
       duration: 1.5,
       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
       ease: "power4.inOut",
@@ -59,34 +59,34 @@ usePreloadSVGAssets();
     });
 
     const handleOverlayClick = () => {
-      gsap.to("h2 div", {
+      gsap.to(".title-text div", {
         duration: 1.5,
         yPercent: -100,
         ease: "power4.inOut",
         stagger: 0.5,
       });
 
-      gsap.to("h2", {
+      gsap.to(".title-text", {
         duration: 1.5,
         clipPath: "polygon(0 85%, 100% 85%, 100% 100%, 0% 100%)",
         ease: "power4.inOut",
         stagger: 0.5,
       });
 
-      gsap.to(".overlay", {
+      gsap.to(".overlay-content", {
         duration: 2,
         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
         ease: "power4.inOut",
       });
 
-      gsap.to(".img", {
+      gsap.to(".loader-image", {
         duration: 2,
         clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0 0%)",
         ease: "power4.inOut",
         stagger: 1.5,
       });
 
-      gsap.to(".loader", {
+      gsap.to(".loader-wrapper", {
         duration: 2,
         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
         ease: "power4.inOut",
@@ -94,7 +94,7 @@ usePreloadSVGAssets();
       });
     };
 
-    const overlay = document.querySelector(".overlay");
+    const overlay = document.querySelector(".overlay-content");
     if (overlay) {
       overlay.addEventListener("click", handleOverlayClick);
     }
@@ -146,52 +146,50 @@ usePreloadSVGAssets();
   };
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       <ParallaxProvider>
-        <div className="container">
+        <div className="container-main-content">
           <Routes location={location} key={location.pathname}>
-            <>
-              <Route
-                path="/*"
-                element={
-                  <>
-                    <CustomCursor />
-                    <Landing />
-                    <About />
-                    <Projects onProjectClick={handleProjectClick} />
-                    <Contact />
-                  </>
-                }
-              />
-              <Route path="/project/:name" element={<SinglePageProject />} />
-            </>
+            <Route
+              path="/*"
+              element={
+                <>
+                  <CustomCursor />
+                  <Landing />
+                  <About />
+                  <Projects onProjectClick={handleProjectClick} />
+                  <Contact />
+                </>
+              }
+            />
+            <Route path="/project/:name" element={<SinglePageProject />} />
           </Routes>
         </div>
-        <div className="loader">
-          <div className="img">
+        <div className="loader-wrapper">
+          <div className="loader-image">
             <img src={png1} alt="" />
           </div>
-          <div className="img">
+          <div className="loader-image">
             <img src={png2} alt="" />
           </div>
-          <div className="img">
+          <div className="loader-image">
             <img src={png3} alt="" />
           </div>
-          <div className="img">
+          <div className="loader-image">
             <img src={png4} alt="" />
           </div>
-          <div className="img">
+          <div className="loader-image">
             <img src={png5} alt="" />
           </div>
-          <div className="img">
+          <div className="loader-image">
             <img src={png6} alt="" />
           </div>
-          <div className="img reveal">
+          <div className="loader-image reveal">
             <img src={png7} alt="" />
           </div>
         </div>
-        <div className="overlay font-urbanist text-font-color">
-          <div className="col">
+        <div className="overlay-content font-urbanist text-font-color">
+          <div className="overlay-col">
             <h2>
               <div>A romanian</div>
             </h2>
@@ -202,7 +200,7 @@ usePreloadSVGAssets();
               <div>based in iasi</div>
             </h2>
           </div>
-          <div className="col">
+          <div className="overlay-col">
             <h2>
               <div>
                 <span>click</span> anywhere to continue
