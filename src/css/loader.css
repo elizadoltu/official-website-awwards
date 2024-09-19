@@ -40,7 +40,6 @@ img {
   z-index: 100;
   margin: 0;
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  font-size: 60px;
   font-weight: 400;
   text-transform: uppercase;
   line-height: 1;
