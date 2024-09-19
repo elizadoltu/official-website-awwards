@@ -181,29 +181,29 @@ usePreloadSVGAssets();
           
           <div className="loader">
         <div className="img-container">
-          <img src={png1} alt="" />
+          <img src={png1} alt="" className="w-full h-full object-cover"/>
         </div>
         <div className="img-container">
-          <img src={png2} alt="" />
+          <img src={png2} alt="" className="w-full h-full object-cover"/>
         </div>
         <div className="img-container">
-          <img src={png3} alt="" />
+          <img src={png3} alt="" className="w-full h-full object-cover"/>
         </div>
         <div className="img-container">
-          <img src={png4} alt="" />
+          <img src={png4} alt="" className="w-full h-full object-cover"/>
         </div>
         <div className="img-container">
-          <img src={png5} alt="" />
+          <img src={png5} alt="" className="w-full h-full object-cover"/>
         </div>
         <div className="img-container">
-          <img src={png6} alt="" />
+          <img src={png6} alt="" className="w-full h-full object-cover"/>
         </div>
         <div className="img-container">
-          <img src={png7} alt="" />
+          <img src={png7} alt="" className="w-full h-full object-cover"/>
         </div>
       </div>
       <div className="overlay">
-        <div className="col">
+        <div className="col mobile:text-sm tablet:text-3xl">
           <h2 className="headline">
             <div className="headline-text">A romanian</div>
           </h2>
