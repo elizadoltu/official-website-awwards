@@ -5,8 +5,9 @@ import { useParallax } from "react-scroll-parallax";
 import Available from "./Available";
 import ScrollToTop from "../hooks/ScrollToTop";
 import CustomCursor from "../utils/CustomCursor";
-import transition from "../animations/transition";
 import "../animations/hover-animation.css";
+import "../css/loader.css";
+import gsap from "gsap";
 
 const preloadImages = (images) => {
   images.forEach((src) => {
@@ -47,12 +48,33 @@ const SinglePageProject = () => {
     }
   }, [project]);
 
+  useEffect(() => {
+  
+   
+  
+      gsap.to(".img-container", {
+        clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0 0%)",
+        ease: "power4.inOut",
+        stagger: {
+          amount: 1.5,
+        },
+        duration: 2,
+      });
+  
+      gsap.to(".loader", {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        ease: "power4.inOut",
+        delay: 2,
+        duration: 2,
+      });
+  }, []);
+
   return (
     <div className="w-full bg-bg-color text-font-color overflow-hidden">
       <CustomCursor />
       {project ? (
         <div className="w-full">
-          <div className="font-clash-grotesk font-bold uppercase w-full tablet:text-12xl mobile:text-7xl">
+          <div><div className="font-clash-grotesk font-bold uppercase w-full tablet:text-12xl mobile:text-7xl">
             <h1 className="tablet:-mt-5 tablet:-ml-40 mobile:mt-10" ref={firstName}>
               {project.firstname}/
             </h1>
@@ -68,13 +90,13 @@ const SinglePageProject = () => {
             ))}
           </div>
           <div
-            className="flex items-end mobile:flex-col tablet:flex-row font-urbanist p-3 uppercase text-lg mobile:text-sm tablet:text-lg"
+            className="grid tablet:grid-cols-3 mobile:grid-cols-1 items-end mobile:flex-col tablet:flex-row font-urbanist p-3 uppercase text-lg mobile:text-sm tablet:text-lg"
             ref={imageProject}
           >
             <p className="tablet:text-right mobile:text-left mr-3">
               {project.details}
             </p>
-            <div className="mobile:mt-8 tablet:mt-0">
+            <div className="mobile:mt-8 tablet:mt-0 col-span-2">
               <p className="mb-3">{project.description}</p>
               <img
                 src={project.hero}
@@ -83,7 +105,7 @@ const SinglePageProject = () => {
               />
             </div>
           </div>
-          <div className="w-full tablet:-mt-10 tablet:text-10xl mobile:text-7xl font-clash-grotesk">
+          <div className="w-full tablet:mt-10 tablet:text-10xl mobile:text-7xl font-clash-grotesk">
             <h1 className="flex justify-end tablet:-mr-32">
               {project.month}/
             </h1>
@@ -114,8 +136,23 @@ const SinglePageProject = () => {
               />
             ))}
           </div>
-          <Available project={project} />
+          <Available project={project} /></div>
+          <div className="loader">
+          {project.gridImages.map((image, index) => (
+            <div className="img-container"><img
+                key={index}
+                src={image}
+                alt={`Project image ${index + 1}`}
+                className="w-full h-full object-cover"
+              /></div>
+              
+            ))}
+        <div className="img-container">
+          <img src={project.hero} alt="" className="w-full h-full object-cover"/>
         </div>
+      </div>
+        </div>
+        
       ) : (
         <p>Project not found</p>
       )}
@@ -123,4 +160,4 @@ const SinglePageProject = () => {
   );
 };
 
-export default transition(SinglePageProject);
+export default SinglePageProject;
