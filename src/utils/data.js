@@ -1,7 +1,7 @@
-import alexGreenwood from "../assets/alex-greenwood.svg";
-import leahWilliamson from "../assets/leah-williamson.svg";
-import bookingIasi from "../assets/booking-iasi.svg";
-import urbanOasis from "../assets/urban-oasis.svg";
+import alexGreenwood from "../assets/alex-greenwood.png";
+import leahWilliamson from "../assets/leah-williamson.png";
+import bookingIasi from "../assets/booking-iasi.png";
+import urbanOasis from "../assets/urban-oasis.png";
 
 import alexHero from "../assets/alex-greenwood/hero.png";
 import alexDesktop1 from "../assets/alex-greenwood/desktop-1.png";
