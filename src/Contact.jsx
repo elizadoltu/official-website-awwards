@@ -4,7 +4,7 @@ import "./css/contact.css";
 
 const Contact = () => {
   return (
-    <div className="tablet:w-full tablet:pb-5 mt-40">
+    <div className="tablet:w-full tablet:pb-5 mt-40" id="contact">
       <div className="absolute tablet:-mt-40 mobile:-mt-12">
         <img
           src={contactAbstract}
