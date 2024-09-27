@@ -9,6 +9,7 @@ export default {
     screens:{
       'mobile': '300px',
       'tablet': '768px',
+      'desktop': '1500px',
       ...defaultTheme.screens,
     },
     extend: {
