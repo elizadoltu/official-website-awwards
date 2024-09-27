@@ -8,14 +8,14 @@ const preloadImage = (url) => {
 const HoverComponent = ({ project }) => {
   return (
     <div 
-      className="bg-font-color w-256 h-256 rounded-xl"
+      className="bg-font-color w-auto h-auto rounded-xl"
       onMouseEnter={() => preloadImage(project.image)} 
     >
       <div>
        
-        <img src={project.image} alt="image of a project" className="w-full h-auto rounded-t-xl" />
+        <img src={project.popup} alt="image of a project" className="w-full h-auto" />
       </div>
-      <div className="flex flex-col justify-between font-urbanist text-bg-color text-base p-1">
+      {/*<div className="flex flex-col justify-between font-urbanist text-bg-color text-base p-1">
         <div className="flex justify-between">
           <p className="uppercase font-bold">{project.name}</p>
           <ul className="list-none">
@@ -31,7 +31,7 @@ const HoverComponent = ({ project }) => {
           <p className=" text-xs">24</p>
           <p className="uppercase">{project.description}</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
