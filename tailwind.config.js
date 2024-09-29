@@ -28,7 +28,9 @@ export default {
         '12xl' : '20rem',
         '10xl' : '12rem',
         '14xl' : '25rem',
-        '13xl' : '21rem'
+        '13xl' : '21rem',
+        '11xl' : '18rem',
+        '15xl' : '16rem',
       },
       width: {
         '256': '30rem',

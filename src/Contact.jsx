@@ -15,10 +15,10 @@ const Contact = () => {
       <div className="flex justify-center items-center main-container w-full grow p-5">
         <div className="pt-5 pl-5 pr-5 rounded-3xl bg-font-color uppercase flex flex-col justify-between grow w-full">
           <div className="flex flex-col tablet:items-end mobile:text-7xl mobile:items-start mobile:ml-0 tablet:ml-0 grow">
-            <h1 className="tablet:text-14xl font-clash-grotesk text-bg-color uppercase tablet:-mt-12 w-full flex justify-center">
+            <h1 className="tablet:text-11xl desktop:text-14xl font-clash-grotesk text-bg-color uppercase tablet:-mt-12 w-full flex justify-center">
               contact
             </h1>
-            <p className="text-bg-color tablet:-mt-16 tablet:w-2/6 mobile:w-80 tablet:text-right tablet:text-lg mobile:text-sm">
+            <p className="text-bg-color tablet:-mt-10 tablet:w-2/6 mobile:w-80 tablet:text-right tablet:text-lg mobile:text-sm">
               Let's Connect! Reach out and let the conversation begin. Your
               thoughts, questions, and ideas are always welcome
             </p>
