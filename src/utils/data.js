@@ -54,7 +54,7 @@ const projectsData = [
         "Figma"
     ],
     description:
-      "This site embraces a minimalist yet sophisticated design, inspired by Awwwards-style aesthetics. Through careful selection of fonts, imagery, and overall style, the website aims to convey a sense of familiarity while maintaining a respectful distance.",
+      "This site embraces a minimalist yet sophisticated design. Through careful selection of fonts, imagery, and overall style, the website aims to convey a sense of familiarity while maintaining a respectful distance.",
     month: "JULY",
     year: "2024",
     details: "Alex Greenwood (born 7 September 1993, Liverpool) is an English professional footballer who plays for Women's Super League club Manchester City and the England national team.",
@@ -165,7 +165,7 @@ const projectsData = [
       "Figma"
     ],
     description:
-      "Urban Oasis is a multi-page web application designed with an Awwwards-style minimalist approach to provide an exceptional user experience (UX) and user interface (UI). The app aims to showcase urban green spaces, gardening tips, community stories, and more.",
+      "Urban Oasis is a multi-page web application designed with a minimalist approach to provide an exceptional user experience (UX) and user interface (UI). The app aims to showcase urban green spaces, gardening tips, community stories, and more.",
     month: "JULY - SEPTEMBER",
     year: "2024",
     details: "The objective of this application was to determine whether an AI model like ChatGPT could generate a functional full-stack application from scratch. ChatGPT was used to generate the initial codebase, including backend routes, database schemas, and frontend components.",
