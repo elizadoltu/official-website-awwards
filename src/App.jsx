@@ -32,7 +32,6 @@ import usePreloadSVGAssets from "./hooks/usePreloadSVGAssets";
 import "./animations/hover-animation.css";
 import "./css/loader.css";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
